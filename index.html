@@ -1,1852 +1,572 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth scroll-pt-20">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Offre BPO Data & BIM — Intelligence Artificielle Souveraine</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --noir: #0a0c0f;
-    --anthracite: #141820;
-    --gris-fonce: #1e2430;
-    --gris-moyen: #2c3444;
-    --bordure: #2e3a4e;
-    --or: #c9a84c;
-    --or-clair: #e8c97a;
-    --or-pale: #f5e4b0;
-    --blanc: #f4f1eb;
-    --blanc-froid: #e8edf5;
-    --bleu-acier: #4a7fa5;
-    --vert-succes: #3d8c6f;
-    --rouge-alerte: #c0392b;
-    --texte-principal: #d4cfc6;
-    --texte-secondaire: #8a9bb0;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--noir);
-    color: var(--texte-principal);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── GRILLE DE FOND ─────────────────────────────── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── COUVERTURE ─────────────────────────────────── */
-  .cover {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 10%;
-    position: relative;
-    border-bottom: 1px solid var(--bordure);
-  }
-
-  .cover::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 45%;
-    height: 100%;
-    background: radial-gradient(ellipse at 80% 30%, rgba(201,168,76,0.07) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  .cover-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--or);
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .cover-label::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 1px;
-    background: var(--or);
-  }
-
-  .cover h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 6vw, 84px);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--blanc);
-    max-width: 820px;
-    margin-bottom: 12px;
-  }
-
-  .cover h1 span {
-    color: var(--or);
-  }
-
-  .cover-sub {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(20px, 2.5vw, 32px);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--texte-secondaire);
-    margin-bottom: 48px;
-  }
-
-  .cover-desc {
-    max-width: 620px;
-    font-size: 16px;
-    color: var(--texte-principal);
-    margin-bottom: 56px;
-    line-height: 1.8;
-  }
-
-  .garantie-bandeau {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 4px;
-    padding: 16px 24px;
-    font-size: 13px;
-    color: var(--or-pale);
-    max-width: 680px;
-  }
-
-  .garantie-bandeau strong {
-    color: var(--or);
-    font-weight: 600;
-  }
-
-  .shield-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-  }
-
-  /* ── NAVIGATION SECTIONS ────────────────────────── */
-  .section-nav {
-    background: var(--anthracite);
-    border-bottom: 1px solid var(--bordure);
-    padding: 0 10%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .section-nav a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--texte-secondaire);
-    text-decoration: none;
-    padding: 18px 20px;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .section-nav a:hover {
-    color: var(--or);
-    border-bottom-color: var(--or);
-  }
-
-  /* ── LAYOUT GENERAL ─────────────────────────────── */
-  .page-section {
-    padding: 80px 10%;
-    border-bottom: 1px solid var(--bordure);
-    position: relative;
-    z-index: 1;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 20px;
-    margin-bottom: 48px;
-  }
-
-  .section-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
-    font-weight: 900;
-    color: rgba(201,168,76,0.12);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .section-title-block h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 3vw, 38px);
-    font-weight: 700;
-    color: var(--blanc);
-    line-height: 1.2;
-  }
-
-  .section-title-block p {
-    font-size: 14px;
-    color: var(--texte-secondaire);
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  /* ── BADGE POC RECOMMANDÉ ───────────────────────── */
-  .poc-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.4);
-    color: var(--or);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 2px;
-    margin-bottom: 12px;
-  }
-
-  /* ── CARTE CAS D'USAGE ──────────────────────────── */
-  .cas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
-    gap: 24px;
-  }
-
-  .cas-card {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 6px;
-    padding: 32px;
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-    overflow: hidden;
-  }
-
-  .cas-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--or);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .cas-card:hover {
-    border-color: rgba(201,168,76,0.3);
-    transform: translateY(-2px);
-  }
-
-  .cas-card:hover::before {
-    opacity: 1;
-  }
-
-  .cas-card.poc-recommande {
-    border-color: rgba(201,168,76,0.25);
-  }
-
-  .cas-card.poc-recommande::before {
-    opacity: 0.6;
-  }
-
-  .cas-numero {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--texte-secondaire);
-    letter-spacing: 2px;
-    margin-bottom: 16px;
-  }
-
-  .cas-titre {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--blanc);
-    margin-bottom: 20px;
-    line-height: 1.3;
-  }
-
-  .cas-bloc {
-    margin-bottom: 16px;
-  }
-
-  .cas-bloc-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--or);
-    margin-bottom: 6px;
-  }
-
-  .cas-bloc-texte {
-    font-size: 14px;
-    color: var(--texte-principal);
-    line-height: 1.65;
-  }
-
-  .cas-livrable {
-    background: var(--gris-fonce);
-    border-radius: 4px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--texte-secondaire);
-    margin-top: 12px;
-    border-left: 2px solid var(--bleu-acier);
-  }
-
-  .cas-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--bordure);
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .modele-tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    background: var(--gris-fonce);
-    color: var(--bleu-acier);
-    padding: 5px 10px;
-    border-radius: 3px;
-    border: 1px solid rgba(74,127,165,0.3);
-  }
-
-  .temps-bloc {
-    text-align: right;
-  }
-
-  .temps-humain {
-    font-size: 12px;
-    color: var(--texte-secondaire);
-    text-decoration: line-through;
-  }
-
-  .temps-ia {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--or);
-  }
-
-  /* ── REFERENCES ANONYMISÉES ─────────────────────── */
-  .references-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-    margin-top: 8px;
-  }
-
-  .ref-card {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 6px;
-    padding: 28px;
-  }
-
-  .ref-secteur {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--or);
-    margin-bottom: 14px;
-  }
-
-  .ref-stats {
-    display: flex;
-    gap: 24px;
-    margin: 16px 0;
-    flex-wrap: wrap;
-  }
-
-  .ref-stat {
-    text-align: left;
-  }
-
-  .ref-stat-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--blanc);
-    line-height: 1;
-  }
-
-  .ref-stat-label {
-    font-size: 11px;
-    color: var(--texte-secondaire);
-    margin-top: 4px;
-  }
-
-  .ref-citation {
-    font-style: italic;
-    font-size: 14px;
-    color: var(--texte-secondaire);
-    border-left: 2px solid var(--or);
-    padding-left: 14px;
-    margin-top: 16px;
-    line-height: 1.6;
-  }
-
-  /* ── MODELE ECONOMIQUE ──────────────────────────── */
-  .tarif-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-
-  .tarif-card {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 6px;
-    padding: 32px;
-    position: relative;
-  }
-
-  .tarif-card.featured {
-    border-color: var(--or);
-    background: linear-gradient(145deg, rgba(201,168,76,0.08), var(--anthracite));
-  }
-
-  .tarif-card.featured::after {
-    content: 'RECOMMANDÉ';
-    position: absolute;
-    top: -1px; right: 24px;
-    background: var(--or);
-    color: var(--noir);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    padding: 4px 10px;
-    border-radius: 0 0 4px 4px;
-    font-weight: 600;
-  }
-
-  .tarif-nom {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--blanc);
-    margin-bottom: 8px;
-  }
-
-  .tarif-desc {
-    font-size: 13px;
-    color: var(--texte-secondaire);
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
-
-  .tarif-prix {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--or);
-    margin-bottom: 4px;
-  }
-
-  .tarif-unite {
-    font-size: 12px;
-    color: var(--texte-secondaire);
-    margin-bottom: 20px;
-  }
-
-  .tarif-liste {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .tarif-liste li {
-    font-size: 13px;
-    color: var(--texte-principal);
-    padding-left: 18px;
-    position: relative;
-  }
-
-  .tarif-liste li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--or);
-    font-size: 11px;
-  }
-
-  /* ── INFRASTRUCTURE ─────────────────────────────── */
-  .infra-note {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 6px;
-    padding: 32px 40px;
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .infra-icon-bloc {
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .infra-icon {
-    font-size: 48px;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .infra-icon-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--or);
-    text-transform: uppercase;
-  }
-
-  .infra-texte h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--blanc);
-    margin-bottom: 12px;
-  }
-
-  .infra-texte p {
-    font-size: 14px;
-    color: var(--texte-secondaire);
-    line-height: 1.7;
-    max-width: 640px;
-  }
-
-  .infra-specs {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-
-  .spec-pill {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    background: var(--gris-fonce);
-    color: var(--texte-secondaire);
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid var(--bordure);
-  }
-
-  /* ── ARGUMENTAIRE FINAL ─────────────────────────── */
-  .argumentaire {
-    background: linear-gradient(135deg, var(--gris-fonce), var(--anthracite));
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 6px;
-    padding: 56px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .argumentaire::before {
-    content: '❝';
-    position: absolute;
-    top: 20px; left: 40px;
-    font-size: 120px;
-    color: rgba(201,168,76,0.06);
-    font-family: 'Playfair Display', serif;
-    line-height: 1;
-  }
-
-  .argumentaire blockquote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 2vw, 26px);
-    font-style: italic;
-    color: var(--blanc);
-    max-width: 800px;
-    margin: 0 auto 32px;
-    line-height: 1.6;
-  }
-
-  .argumentaire .risque-bloc {
-    background: rgba(192,57,43,0.1);
-    border: 1px solid rgba(192,57,43,0.3);
-    border-radius: 4px;
-    padding: 16px 24px;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    font-size: 14px;
-    color: #e57e74;
-    line-height: 1.65;
-  }
-
-  .argumentaire .risque-bloc strong {
-    color: #ff6b5b;
-  }
-
-  /* ── POC CTA ────────────────────────────────────── */
-  .poc-section {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 6px;
-    padding: 48px 56px;
-    display: flex;
-    gap: 56px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .poc-texte {
-    flex: 1;
-    min-width: 280px;
-  }
-
-  .poc-texte h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--blanc);
-    margin-bottom: 16px;
-  }
-
-  .poc-texte p {
-    font-size: 15px;
-    color: var(--texte-secondaire);
-    line-height: 1.75;
-    margin-bottom: 12px;
-  }
-
-  .poc-etapes {
-    flex: 1;
-    min-width: 280px;
-  }
-
-  .poc-etape {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    align-items: flex-start;
-  }
-
-  .poc-etape-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--or);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 40px;
-  }
-
-  .poc-etape-titre {
-    font-weight: 600;
-    color: var(--blanc);
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-
-  .poc-etape-desc {
-    font-size: 13px;
-    color: var(--texte-secondaire);
-  }
-
-  .cta-button {
-    display: inline-block;
-    background: var(--or);
-    color: var(--noir);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    padding: 16px 40px;
-    border-radius: 3px;
-    text-decoration: none;
-    margin-top: 24px;
-    transition: background 0.2s, transform 0.2s;
-  }
-
-  .cta-button:hover {
-    background: var(--or-clair);
-    transform: translateY(-1px);
-  }
-
-  /* ── LEXIQUE ────────────────────────────────────── */
-  .lexique-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 12px;
-  }
-
-  .lexique-item {
-    background: var(--anthracite);
-    border: 1px solid var(--bordure);
-    border-radius: 4px;
-    padding: 14px 18px;
-    display: flex;
-    gap: 12px;
-  }
-
-  .lexique-terme {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--or);
-    font-weight: 500;
-    flex-shrink: 0;
-    min-width: 100px;
-  }
-
-  .lexique-def {
-    font-size: 13px;
-    color: var(--texte-secondaire);
-    line-height: 1.5;
-  }
-
-  /* ── FOOTER ─────────────────────────────────────── */
-  .footer {
-    padding: 40px 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    border-top: 1px solid var(--bordure);
-  }
-
-  .footer-left {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--texte-secondaire);
-    letter-spacing: 1px;
-  }
-
-  .footer-right {
-    font-size: 12px;
-    color: var(--texte-secondaire);
-  }
-
-  .iso-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--or);
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 6px 14px;
-    border-radius: 2px;
-  }
-
-  /* ── DIVIDER ─────────────────────────────────────── */
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: var(--or);
-    margin: 32px 0;
-    opacity: 0.5;
-  }
-
-  /* ── RESPONSIVE ─────────────────────────────────── */
-  @media (max-width: 768px) {
-    .cover, .page-section { padding-left: 6%; padding-right: 6%; }
-    .cas-grid { grid-template-columns: 1fr; }
-    .argumentaire { padding: 32px 24px; }
-    .poc-section { padding: 32px 24px; }
-    .section-number { font-size: 48px; }
-  }
-
-  /* ── ANIMATIONS ─────────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .cover > * {
-    animation: fadeUp 0.7s ease both;
-  }
-
-  .cover > *:nth-child(1) { animation-delay: 0.1s; }
-  .cover > *:nth-child(2) { animation-delay: 0.25s; }
-  .cover > *:nth-child(3) { animation-delay: 0.4s; }
-  .cover > *:nth-child(4) { animation-delay: 0.55s; }
-  .cover > *:nth-child(5) { animation-delay: 0.7s; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SouveraineData | Traitement IA Local pour l'Ingénierie</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        darker: '#0a0a0a',
+                        accent: '#3b82f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-dark text-gray-200 antialiased selection:bg-accent selection:text-white">
 
-<!-- ══════════════════════════════════════
-     COUVERTURE
-══════════════════════════════════════ -->
-<section class="cover" id="accueil">
-  <div class="cover-label">Document confidentiel — Réservé aux Directions Générales</div>
-  <h1>Stratégie Data & BIM<br><span>L'Offre Intégrale BPO</span></h1>
-  <div class="cover-sub">Intelligence Artificielle Souveraine pour Grands Groupes</div>
-  <p class="cover-desc">
-    Une infrastructure de la taille d'un grand projet de construction (Vinci, Bouygues, Eiffage) n'est pas qu'un chantier — c'est une ville intelligente hyper-sécurisée. La maquette numérique (BIM) y gère la conception, l'exploitation (Facility Management) et la gestion des risques. Vos données sont vos actifs les plus précieux. Notre agence vous apporte la puissance de l'IA sans jamais les quitter vos serveurs. Découvrez nos <strong style="color:var(--or)">24 prestations BPO</strong> couvrant l'intégralité du cycle de vie d'un projet.
-  </p>
-  <div class="garantie-bandeau">
-    <span class="shield-icon">🛡</span>
-    <div>
-      <strong>Garantie Standard ISO 19650</strong><br>
-      Tous nos livrables de données structurées sont formatés pour une compatibilité totale avec la norme internationale ISO 19650 — nommage des fichiers, structure des métadonnées, niveaux d'information (LOI) documentés à chaque livraison.
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     NAVIGATION
-══════════════════════════════════════ -->
-<nav class="section-nav">
-  <a href="#references">Références</a>
-  <a href="#numerisation">Numérisation</a>
-  <a href="#conformite">Qualité & Conformité</a>
-  <a href="#risques">Risques & Juridique</a>
-  <a href="#patrimoine">Patrimoine & FM</a>
-  <a href="#secret">Secret Industriel</a>
-  <a href="#cao">Outils CAO/BIM</a>
-  <a href="#esg">Décarbonation ESG</a>
-  <a href="#rh">RH & Sécurité</a>
-  <a href="#appels">Offres & Rédaction</a>
-  <a href="#reception">Réception</a>
-  <a href="#transversal">Transversal</a>
-  <a href="#tarifs">Tarifs</a>
-  <a href="#poc">POC</a>
-</nav>
-
-<!-- ══════════════════════════════════════
-     REFERENCES ANONYMISÉES
-══════════════════════════════════════ -->
-<section class="page-section" id="references">
-  <div class="section-header">
-    <div class="section-number">00</div>
-    <div class="section-title-block">
-      <h2>Résultats Prouvés</h2>
-      <p>Références clients — anonymisées sous NDA strict</p>
-    </div>
-  </div>
-
-  <div class="references-grid">
-    <div class="ref-card">
-      <div class="ref-secteur">🏥 Client Confidentiel — Secteur Hospitalier</div>
-      <div class="ref-stats">
-        <div class="ref-stat"><div class="ref-stat-val">8 000</div><div class="ref-stat-label">plans structurés</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">3 j</div><div class="ref-stat-label">délai de livraison</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">0,3 %</div><div class="ref-stat-label">taux d'erreur (audité)</div></div>
-      </div>
-      <div class="ref-citation">« La conformité ISO 19650 des livrables nous a permis une intégration directe dans notre GED sans retraitement. »<br>— DSI, CHU régional</div>
-    </div>
-
-    <div class="ref-card">
-      <div class="ref-secteur">🏗️ Client Confidentiel — Grands Travaux Publics</div>
-      <div class="ref-stats">
-        <div class="ref-stat"><div class="ref-stat-val">12 000</div><div class="ref-stat-label">fiches FDES traitées</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">18 h</div><div class="ref-stat-label">vs 3 mois humain</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">RE2020</div><div class="ref-stat-label">conformité validée</div></div>
-      </div>
-      <div class="ref-citation">« Gain de temps exceptionnel sur notre bilan carbone. Les données étaient prêtes avant notre réunion MOA. »<br>— Responsable RSE, Groupe infrastructure</div>
-    </div>
-
-    <div class="ref-card">
-      <div class="ref-secteur">🏢 Client Confidentiel — Facility Management Tertiaire</div>
-      <div class="ref-stats">
-        <div class="ref-stat"><div class="ref-stat-val">45 000</div><div class="ref-stat-label">tickets GMAO structurés</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">6 h</div><div class="ref-stat-label">traitement complet</div></div>
-        <div class="ref-stat"><div class="ref-stat-val">100%</div><div class="ref-stat-label">offline, zéro cloud</div></div>
-      </div>
-      <div class="ref-citation">« Aucune donnée n'a quitté nos locaux. C'est la condition sine qua non pour notre RSSI — elle était respectée. »<br>— Directeur Exploitation, Gestionnaire immobilier</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 1 — NUMÉRISATION
-══════════════════════════════════════ -->
-<section class="page-section" id="numerisation">
-  <div class="section-header">
-    <div class="section-number">01</div>
-    <div class="section-title-block">
-      <h2>Numérisation & Structuration de l'Historique</h2>
-      <p>Le Défi de l'Héritage documentaire</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — Quick Win</div>
-      <div class="cas-numero">CAS D'USAGE / 01</div>
-      <div class="cas-titre">Extraction massive de cartouches de plans (PDF → Excel)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Le client possède 50 000 plans scannés (réseaux d'eau, électricité) non classés, sans base de données exploitable pour la GED.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Lecture automatisée de chaque plan, extraction du cartouche (Auteur, Date, Bâtiment, Indice de révision) et livraison d'une base Excel structurée, directement importable dans votre GED.</div>
-        <div class="cas-livrable">📦 Livrable : fichier Excel/CSV normé ISO 19650 — colonnes : identifiant unique, auteur, indice, date, zone, discipline, statut</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~6 mois (1 documentaliste)</div>
-          <div class="temps-ia">⚡ 48 heures</div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <i class="ph-fill ph-hexagon text-accent"></i>
+                        Souveraine<span class="text-gray-500 font-normal">Data</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <div class="ml-10 flex items-baseline space-x-8 mr-8">
+                        <a href="#securite" data-i18n="nav_approach" class="text-sm text-gray-400 hover:text-white transition-colors">Notre Approche</a>
+                        <a href="#solutions" data-i18n="nav_usecases" class="text-sm text-gray-400 hover:text-white transition-colors">Cas d'Usage</a>
+                        <a href="#poc" data-i18n="nav_poc" class="bg-white text-black px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-200 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                            Demander un POC
+                        </a>
+                    </div>
+                    <!-- Language Switcher -->
+                    <div class="relative flex items-center border-l border-white/10 pl-6">
+                        <i class="ph ph-globe text-gray-400 mr-2 text-lg"></i>
+                        <select id="lang-switch" class="bg-transparent text-sm text-gray-300 focus:outline-none focus:text-white cursor-pointer appearance-none pr-4">
+                            <option value="fr" class="bg-dark text-white">FR</option>
+                            <option value="en" class="bg-dark text-white">EN</option>
+                            <option value="es" class="bg-dark text-white">ES</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </nav>
 
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 02</div>
-      <div class="cas-titre">Conversion de fiches techniques vers COBie (Unstructured → Structured)</div>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-grid">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Renseigner la maquette BIM avec les données techniques de 10 000 équipements fournies en PDF hétérogènes par des dizaines de fournisseurs différents.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Analyse des catalogues fournisseurs, extraction des paramètres clés (marque, modèle, puissance, maintenance) et génération de fichiers d'import COBie standardisés, prêts à intégrer Revit ou Archicad.</div>
-        <div class="cas-livrable">📦 Livrable : fichiers COBie (.xlsx) conformes BS 1192-4, avec GUID BIM associé à chaque équipement</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~4 mois (2 assistants data)</div>
-          <div class="temps-ia">⚡ 48-72 heures</div>
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-gray-300 mb-8 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span data-i18n="hero_badge">Traitement 100% Hors-Ligne & Sécurisé</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
+                <span data-i18n="hero_title_1">Vos données sont trop précieuses</span> <br class="hidden md:block">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-600" data-i18n="hero_title_2">pour les confier au Cloud.</span>
+            </h1>
+            
+            <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed" data-i18n="hero_desc">
+                L'agence BPO spécialisée dans le traitement par Intelligence Artificielle pour les géants de l'Ingénierie, du BIM et de la Construction. <strong class="text-gray-200 font-medium">Vos secrets industriels restent sous scellé.</strong>
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#poc" data-i18n="hero_btn_poc" class="px-8 py-4 bg-white text-black rounded-full font-medium hover:scale-105 transition-transform duration-300">
+                    Démarrer un Pilote (POC)
+                </a>
+                <a href="#solutions" class="px-8 py-4 glass-panel text-white rounded-full font-medium hover:bg-white/10 transition-colors duration-300 flex items-center justify-center gap-2">
+                    <span data-i18n="hero_btn_cases">Découvrir les cas d'usage</span> <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 2 — QUALITÉ & CONFORMITÉ
-══════════════════════════════════════ -->
-<section class="page-section" id="conformite">
-  <div class="section-header">
-    <div class="section-number">02</div>
-    <div class="section-title-block">
-      <h2>Contrôle Qualité & Conformité</h2>
-      <p>Le Défi de la Sécurité et de la traçabilité</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — ROI Immédiat</div>
-      <div class="cas-numero">CAS D'USAGE / 03</div>
-      <div class="cas-titre">Synthèse intelligente des rapports de "Clashs" BIM + Data Viz PowerBI</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Les logiciels de coordination BIM (Navisworks, Solibri) génèrent des rapports PDF de 400 pages listant 5 000 conflits illisibles. Aucun chef de projet ne peut les analyser manuellement.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Synthèse, classification par criticité (Bloquant / Majeur / Mineur), identification des zones et lots concernés, livraison d'un tableau de bord PowerBI interactif avec filtres par discipline et par corps d'état.</div>
-        <div class="cas-livrable">📦 Livrable : Dashboard PowerBI (.pbix) + export Excel des clashs priorisés, conforme au plan BIM de coordination ISO 19650-2</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Mistral-Nemo-12B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~2-3 semaines (1 BIM Coord.)</div>
-          <div class="temps-ia">⚡ 2h traitement · livraison J+1</div>
+    <!-- Norms Bar -->
+    <div class="border-y border-white/5 bg-darker/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-widest mb-6" data-i18n="norms_title">Nos processus répondent aux exigences les plus strictes</p>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-20 opacity-60 grayscale">
+                <div class="flex items-center gap-2"><i class="ph-fill ph-lock-key text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_1">RGPD STRICT</span></div>
+                <div class="flex items-center gap-2"><i class="ph-fill ph-gavel text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_2">SECRET PROFESSIONNEL</span></div>
+                <div class="flex items-center gap-2"><i class="ph-fill ph-shield-check text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_3">SECRET DES AFFAIRES</span></div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 04</div>
-      <div class="cas-titre">Audit de conformité CCTP vs. Données BIM (0% d'oubli garanti)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Vérifier manuellement que 2 000 portes respectent les normes incendie d'un cahier des charges textuel de 800 pages. Un oubli peut entraîner un refus de réception ou une mise en cause en responsabilité.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Croisement systématique de l'export Excel de la maquette avec le PDF du CCTP pour générer un rapport d'anomalies exhaustif, avec référence exacte à la clause du cahier des charges.</div>
-        <div class="cas-livrable">📦 Livrable : Rapport d'anomalies Excel avec colonne "Clause CCTP source" + tableau de bord conformité par lot</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~3 semaines (2 ingénieurs)</div>
-          <div class="temps-ia">⚡ 4 heures</div>
+    <!-- Le Problème / La Solution -->
+    <section id="securite" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-i18n="dilemma_title">Le Dilemme de l'Ingénierie</h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed" data-i18n="dilemma_p1">
+                        Les équipes de conception et d'exploitation perdent des milliers d'heures sur des tâches manuelles (extraction de plans, relecture de CCTP, traitement de baux). 
+                    </p>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed" data-i18n="dilemma_p2">
+                        Pourtant, le niveau de confidentialité de vos projets vous <strong class="text-white">interdit formellement</strong> d'utiliser des intelligences artificielles commerciales comme ChatGPT. Le risque d'espionnage industriel est trop grand.
+                    </p>
+                    <div class="glass-panel p-6 border-l-4 border-l-accent rounded-r-lg">
+                        <h4 class="text-white font-semibold flex items-center gap-2 mb-2">
+                            <i class="ph-fill ph-cpu text-accent text-xl"></i> <span data-i18n="dilemma_sol_title">La Solution "Air-Gapped"</span>
+                        </h4>
+                        <p class="text-sm text-gray-400" data-i18n="dilemma_sol_desc">
+                            Nous déployons des Modèles d'IA massifs sur nos propres "Forges" de calcul locales. La machine est physiquement déconnectée d'Internet. La fuite de données est mathématiquement impossible.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative reveal delay-100">
+                    <div class="aspect-square md:aspect-video lg:aspect-square rounded-2xl glass-panel p-8 flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent"></div>
+                        <div class="space-y-6 relative z-10">
+                            <!-- Diagram Item -->
+                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+                                <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
+                                    <i class="ph ph-cloud-slash text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-white" data-i18n="diag_1_title">Zéro Cloud</h5>
+                                    <p class="text-xs text-gray-400" data-i18n="diag_1_desc">Aucune API externe utilisée.</p>
+                                </div>
+                            </div>
+                            <!-- Diagram Item -->
+                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+                                <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
+                                    <i class="ph ph-hard-drives text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-white" data-i18n="diag_2_title">Traitement sur Serveur Local</h5>
+                                    <p class="text-xs text-gray-400" data-i18n="diag_2_desc">Puces ultra-puissantes dédiées.</p>
+                                </div>
+                            </div>
+                            <!-- Diagram Item -->
+                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
+                                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500">
+                                    <i class="ph ph-file-lock text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-medium text-white" data-i18n="diag_3_title">Destruction Post-Livraison</h5>
+                                    <p class="text-xs text-gray-400" data-i18n="diag_3_desc">Purge militaire des données à 24h.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!-- Cas d'usage -->
+    <section id="solutions" class="py-24 bg-darker">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4" data-i18n="cases_title">L'Intelligence Artificielle au service du BIM et du BTP</h2>
+                <p class="text-gray-400" data-i18n="cases_subtitle">Découvrez comment nous automatisons vos tâches les plus chronophages avec une précision chirurgicale.</p>
+            </div>
 
-<!-- ══════════════════════════════════════
-     SECTION 3 — RISQUES & JURIDIQUE
-══════════════════════════════════════ -->
-<section class="page-section" id="risques">
-  <div class="section-header">
-    <div class="section-number">03</div>
-    <div class="section-title-block">
-      <h2>Appels d'Offres, Suivi de Chantier & Juridique</h2>
-      <p>Le Défi du Risque contractuel</p>
-    </div>
-  </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal">
+                    <i class="ph-fill ph-file-pdf text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_1_title">Structuration de l'Historique</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_1_desc">Conversion de milliers de plans scannés et fiches techniques hétérogènes en bases de données structurées (COBie) prêtes pour l'injection BIM.</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_1_roi">ROI: 6 mois de saisie humaine réduits à 48h.</div>
+                </div>
 
-  <div class="cas-grid">
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-100">
+                    <i class="ph-fill ph-magnifying-glass text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_2_title">Analyse Juridique & DCE</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_2_desc">Ingestion de cahiers des charges (CCTP) de 3000 pages. Identification des risques, clauses abusives et vérification de la conformité avec la maquette.</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_2_roi">0% d'oubli sur les normes d'incendie ou pénalités.</div>
+                </div>
 
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — Valeur Stratégique</div>
-      <div class="cas-numero">CAS D'USAGE / 05</div>
-      <div class="cas-titre">Analyse des Risques sur Appels d'Offres (Décision Go / No-Go)</div>
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-200">
+                    <i class="ph-fill ph-buildings text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_3_title">Facility Management (GEM)</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_3_desc">Analyse des rapports d'intervention textes libres et des baux commerciaux pour alimenter instantanément votre logiciel de GMAO (Maximo, Archibus).</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_3_roi">Mise à jour patrimoniale automatisée.</div>
+                </div>
 
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Lire un DCE de 3 000 pages en une semaine pour identifier les clauses abusives, pénalités cachées, ou responsabilités disproportionnées avant de s'engager à répondre.</div>
-      </div>
+                <!-- Card 4 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal">
+                    <i class="ph-fill ph-detective text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_4_title">Anonymisation (Scrubbing)</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_4_desc">Nettoyage intelligent des plans et maquettes avant envoi aux sous-traitants. Remplacement des noms de projets confidentiels par des codes génériques.</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_4_roi">Protection totale du secret industriel.</div>
+                </div>
 
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Analyse RAG sur l'intégralité du DCE, génération d'une "Synthèse des Risques Majeurs" structurée par niveau de criticité et par article, pour aider la direction à décider en toute connaissance de cause.</div>
-        <div class="cas-livrable">📦 Livrable : Rapport Word "Risques Go/No-Go" — 5 à 15 pages, avec score de risque global, clauses surlignées et recommandations</div>
-      </div>
+                <!-- Card 5 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-100">
+                    <i class="ph-fill ph-code text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_5_title">Routines & Plugins CAO/BIM</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_5_desc">Génération de code informatique sur-mesure (AutoLISP pour AutoCAD, C# pour API Revit) pour automatiser vos tâches de conception internes.</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_5_roi">Sans exposer votre code source à ChatGPT.</div>
+                </div>
 
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B (RAG contractuel)</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~2 semaines (Dir. projet + juriste)</div>
-          <div class="temps-ia">⚡ 12-24 heures</div>
+                <!-- Card 6 -->
+                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-200">
+                    <i class="ph-fill ph-leaf text-4xl text-gray-300 mb-6"></i>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="card_6_title">Bilan Carbone & ESG</h3>
+                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_6_desc">Extraction massive des données environnementales (fiches FDES/EPD en PDF) et liaison automatique avec les nomenclatures de la maquette.</p>
+                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_6_roi">Calcul d'empreinte automatisé.</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 06</div>
-      <div class="cas-titre">Structuration des Comptes Rendus de Chantier (CRC → Punchlist)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Des dizaines de CRC en texte libre chaque semaine. Impossible d'avoir une vue globale des réserves, des retards et des responsabilités par sous-traitant.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Extraction automatique des réserves (Punchlist), identification des sous-traitants responsables, dates butoir et niveaux de criticité. Création d'un tableau de bord mensuel des retards et actions en suspens.</div>
-        <div class="cas-livrable">📦 Livrable : Punchlist Excel dynamique + PowerBI "Suivi Retards" avec vue par sous-traitant et par zone</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Mistral-Nemo-12B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~4 jours/mois (1 assistant travaux)</div>
-          <div class="temps-ia">⚡ 1 heure</div>
+    <!-- POC CTA Section -->
+    <section id="poc" class="py-24 relative overflow-hidden">
+        <div class="absolute right-0 bottom-0 w-1/2 h-1/2 bg-accent/5 blur-[100px] rounded-full"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-i18n="poc_title">Ne nous croyez pas sur parole. <br>Testez-nous.</h2>
+            <p class="text-xl text-gray-400 mb-10 font-light" data-i18n="poc_desc">
+                Nous savons que la confiance se mérite. Demandez votre <strong class="text-white">Proof of Concept (POC)</strong> : confiez-nous un jeu de données réduit sous contrat NDA strict. Nous vous prouverons notre précision et notre sécurité avant tout déploiement.
+            </p>
+            
+            <div class="glass-panel p-8 rounded-2xl max-w-2xl mx-auto border-white/10">
+                <form class="space-y-4 text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_name">Nom Complet</label>
+                            <input type="text" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="Jean Dupont">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_company">Entreprise</label>
+                            <input type="text" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="Disney, Vinci, etc.">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_email">Email Professionnel</label>
+                        <input type="email" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="jean.dupont@entreprise.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_need">Quel est votre besoin principal ?</label>
+                        <select class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors appearance-none">
+                            <option data-i18n="form_opt_1">Structuration de données historiques (PDF/Plans)</option>
+                            <option data-i18n="form_opt_2">Analyse de DCE / CCTP</option>
+                            <option data-i18n="form_opt_3">Anonymisation de documents (Scrubbing)</option>
+                            <option data-i18n="form_opt_4">Développement d'outils (AutoLISP / Revit API)</option>
+                            <option data-i18n="form_opt_5">Autre...</option>
+                        </select>
+                    </div>
+                    <button type="button" class="w-full bg-white text-black font-bold py-4 rounded-lg mt-4 hover:bg-gray-200 transition-colors" data-i18n="form_submit">
+                        Demander un contact confidentiel
+                    </button>
+                    <p class="text-center text-xs text-gray-500 mt-4"><i class="ph-fill ph-lock-key"></i> <span data-i18n="form_secure">Vos données sont chiffrées de bout en bout.</span></p>
+                </form>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 07</div>
-      <div class="cas-titre">Préparation de Dossiers de Réclamation (Claims) — Chronologie sourcée</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Fouiller dans 4 ans d'archives (5 000 emails, notes, PV de réunion) pour prouver les responsabilités d'un retard de chantier. Un avocat spécialisé facture 2 mois de travail pour ce seul exercice.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Recherche ciblée 100% hors-ligne dans les archives, génération d'une chronologie des événements avec les preuves exactes (source, date, extrait pertinent) structurée pour soutenir une réclamation.</div>
-        <div class="cas-livrable">📦 Livrable : Rapport "Timeline Claims" Word — chronologie sourcée, indexée, prête pour le conseil juridique</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1-2 mois (1 avocat spécialisé)</div>
-          <div class="temps-ia">⚡ 24 heures</div>
+    <!-- Footer -->
+    <footer class="bg-darker border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-hexagon text-accent text-xl"></i>
+                <span class="text-lg font-bold tracking-tighter text-white">Souveraine<span class="text-gray-500 font-normal">Data</span></span>
+            </div>
+            <div class="text-sm text-gray-500">
+                &copy; 2026 SouveraineData. <span data-i18n="footer_rights">Tous droits réservés.</span>
+            </div>
+            <div class="flex gap-6 text-sm text-gray-500">
+                <a href="#" class="hover:text-white transition-colors" data-i18n="footer_legal">Mentions Légales</a>
+                <a href="#" class="hover:text-white transition-colors" data-i18n="footer_privacy">Politique de Confidentialité (RGPD)</a>
+            </div>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 4 — PATRIMOINE & FM
-══════════════════════════════════════ -->
-<section class="page-section" id="patrimoine">
-  <div class="section-header">
-    <div class="section-number">04</div>
-    <div class="section-title-block">
-      <h2>Gestion de Patrimoine & Facility Management</h2>
-      <p>Le Défi de l'Exploitation au quotidien</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 08</div>
-      <div class="cas-titre">Structuration des Manuels d'Exploitation DOE/DIUO</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Des milliers de pages de manuels de maintenance livrées en vrac à la fin du chantier. Les techniciens de terrain ne peuvent pas s'en servir sur tablette.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Découpage intelligent en fiches d'intervention standardisées (par équipement, par fréquence, par compétence requise) pour alimenter directement les tablettes des techniciens GMAO.</div>
-        <div class="cas-livrable">📦 Livrable : Fiches d'intervention structurées JSON/Excel — compatibles Planon, Mainta, Archibus</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Llama-3.1-8B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1 mois (1 assistant technique)</div>
-          <div class="temps-ia">⚡ 24 heures</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — Volume élevé</div>
-      <div class="cas-numero">CAS D'USAGE / 09</div>
-      <div class="cas-titre">Alimentation de la GMAO depuis des rapports libres (Bons d'Intervention)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Des "Bons d'intervention" manuscrits ou en texte libre (10 000/an) inexploitables par le logiciel GMAO. Les données restent dans des tiroirs.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Analyse du texte libre, extraction structurée (type d'intervention, durée, équipement concerné), association à l'identifiant BIM (GUID) et génération d'un dataset propre pour import GMAO.</div>
-        <div class="cas-livrable">📦 Livrable : Dataset structuré (.csv/.json) prêt pour import Planon, Mainta ou Corrigo — avec GUID BIM associé</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Mistral-Nemo-12B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~2 mois (2 agents admin.)</div>
-          <div class="temps-ia">⚡ 6 h pour 10 000 tickets</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 10</div>
-      <div class="cas-titre">Gestion Locative & Baux Commerciaux — Responsabilités BIM par local</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Des baux commerciaux de 50 pages définissant qui paie la maintenance (locataire ou propriétaire) pour chaque local. Informations éparpillées, sources de litiges fréquents.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Extraction d'un tableau de responsabilités liant chaque "Pièce BIM" aux clauses de bail correspondantes, avec référence d'article et niveau de certitude.</div>
-        <div class="cas-livrable">📦 Livrable : Matrice Excel "Local BIM × Responsabilité Maintenance" — prête pour intégration Asset Management</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~3 semaines (1 juriste immobilier)</div>
-          <div class="temps-ia">⚡ 3 heures</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 11</div>
-      <div class="cas-titre">Nettoyage & Structuration des Logs IoT — Maintenance Prédictive</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Bases de données capteurs (Schneider, Siemens, Johnson Controls) bruitées, pleines de fausses alertes, empêchant toute maintenance prédictive fiable.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Détection des anomalies par algorithme statistique, nettoyage par pseudonymisation des valeurs aberrantes, liaison des données purifiées aux équipements BIM pour activer la maintenance prédictive.</div>
-        <div class="cas-livrable">📦 Livrable : Dataset IoT nettoyé (.parquet/.csv) + rapport de détection d'anomalies par équipement BIM (GUID)</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Llama-3.1-8B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">Impossible manuellement</div>
-          <div class="temps-ia">⚡ 48h de traitement</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 5 — SECRET INDUSTRIEL
-══════════════════════════════════════ -->
-<section class="page-section" id="secret">
-  <div class="section-header">
-    <div class="section-number">05</div>
-    <div class="section-title-block">
-      <h2>Protection du Secret Industriel</h2>
-      <p>Le Défi de l'Espionnage économique et de la confidentialité contractuelle</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 12</div>
-      <div class="cas-titre">Anonymisation des Maquettes et Plans (Document Scrubbing)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Partager des plans avec des sous-traitants ou partenaires sans révéler le nom du maître d'ouvrage, la localisation exacte, ou le nom du projet ultra-confidentiel.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Pseudonymisation systématique des documents : remplacement des noms propres, logos, coordonnées GPS et références contractuelles par des noms de code définis avec le client. Méthode : tokenisation contrôlée, aucune information réversible sans la table de correspondance maître.</div>
-        <div class="cas-livrable">📦 Livrable : Documents anonymisés + table de correspondance chiffrée remise au seul client</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Mistral-Nemo-12B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~2 semaines (projeteur)</div>
-          <div class="temps-ia">⚡ Quelques heures</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 6 — CAO/BIM SUR-MESURE
-══════════════════════════════════════ -->
-<section class="page-section" id="cao">
-  <div class="section-header">
-    <div class="section-number">06</div>
-    <div class="section-title-block">
-      <h2>Développement d'Outils CAO/BIM Sur-Mesure</h2>
-      <p>Le Défi de l'Automatisation métier</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 13</div>
-      <div class="cas-titre">Création de Routines AutoLISP — Traitement par Lots (AutoCAD)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Mettre à jour 2 000 plans DWG historiques pour respecter une nouvelle charte graphique (calques, styles de texte, cartouches). Travail répétitif et à fort risque d'erreur humaine.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Génération d'une routine AutoLISP sur-mesure de traitement par lots, testée sur un échantillon de plans avant déploiement global.</div>
-        <div class="cas-livrable">📦 Livrable : Script AutoLISP (.lsp) + documentation d'utilisation + rapport de traitement post-exécution</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-Coder-32B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1-2 j (développeur senior)</div>
-          <div class="temps-ia">⚡ Sans mobiliser d'expert</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 14</div>
-      <div class="cas-titre">Création de Plugins Revit Sur-Mesure (API Revit / Dynamo)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">L'équipe IT interne est en attente de 3 semaines pour créer un bouton d'automatisation spécifique dans Revit (export personnalisé, vérification de paramètres, génération de nomenclatures).</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Génération, compilation et livraison d'un Add-In Revit clé en main (.dll), avec interface utilisateur intégrée dans le ruban Revit et documentation technique.</div>
-        <div class="cas-livrable">📦 Livrable : Add-In Revit compilé + code source + documentation technique + procédure d'installation</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-Coder-32B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1-2 sem. de dev effectif</div>
-          <div class="temps-ia">⚡ 48h (+ 3 sem. d'attente évitées)</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 7 — DÉCARBONATION ESG
-══════════════════════════════════════ -->
-<section class="page-section" id="esg">
-  <div class="section-header">
-    <div class="section-number">07</div>
-    <div class="section-title-block">
-      <h2>Décarbonation & Engagements ESG</h2>
-      <p>Conformité RE2020 — Base INIES — Label BBCA — Bilan GES</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 15</div>
-      <div class="cas-titre">Calcul automatisé de l'empreinte carbone (FDES/EPD → BIM RE2020)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Lier de longs PDF de fiches FDES (base INIES) aux nomenclatures de matériaux BIM pour produire le bilan carbone exigé par la RE2020, le label BBCA, ou les reportings ESG des groupes cotés.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Extraction automatique de l'impact carbone exact (kgCO2eq/unité) de chaque FDES, association aux nomenclatures BIM par correspondance NER, calcul du bilan global et mise en forme pour déclaration RE2020 / rapport ESG annuel.</div>
-        <div class="cas-livrable">📦 Livrable : Tableau bilan carbone Excel (par lot, par matériau, par zone) + export XML pour logiciel ACV (Novaequa, Pleiades, eLCAbim) — conforme base INIES et RE2020</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1 mois (1 ingénieur ESG)</div>
-          <div class="temps-ia">⚡ 24 heures</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 8 — RH & SÉCURITÉ CHANTIER
-══════════════════════════════════════ -->
-<section class="page-section" id="rh">
-  <div class="section-header">
-    <div class="section-number">08</div>
-    <div class="section-title-block">
-      <h2>Ressources Humaines & Sécurité Chantier</h2>
-      <p>Le Défi de la conformité réglementaire terrain</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 16</div>
-      <div class="cas-titre">Traçabilité des Habilitations & Certifications du Personnel</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Des centaines de certificats PDF éparpillés (habilitations électriques H0/B0/BR, CACES, travail en hauteur, SST) sans tableau de bord d'expiration. Un oubli expose l'entreprise à une responsabilité pénale en cas d'accident.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Lecture automatisée de chaque attestation PDF, extraction des données clés (nom, type d'habilitation, date d'obtention, date d'expiration), alimentation d'un tableau de bord centralisé avec alertes à 30/60/90 jours avant expiration.</div>
-        <div class="cas-livrable">📦 Livrable : Base Excel/CSV structurée + tableau de bord PowerBI "Suivi Habilitations" avec code couleur d'urgence — prête pour intégration SIRH (SAP, Sage, Talentsoft)</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~2-3 j/mois (1 RRH)</div>
-          <div class="temps-ia">⚡ 2-4 heures</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — Obligation légale</div>
-      <div class="cas-numero">CAS D'USAGE / 17</div>
-      <div class="cas-titre">Génération automatique de PPSPS (Plan Particulier de Sécurité et de Protection de la Santé)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Le PPSPS est une obligation légale (R4532-61 du Code du Travail) pour chaque nouveau chantier. Sa rédaction mobilise 1 ingénieur sécurité pendant 1 semaine complète, en répétant à 80% le même contenu d'un projet à l'autre.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">À partir d'un questionnaire de cadrage (nature du chantier, co-activités, risques spécifiques) et d'un template maître validé par vos équipes HSE, génération d'un premier jet de PPSPS complet, adapté au projet, prêt pour révision par l'ingénieur sécurité.</div>
-        <div class="cas-livrable">📦 Livrable : Document PPSPS Word structuré conforme à la norme OPPBTP — couverture, sommaire, fiches de risques par phase, plan de circulation</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1 semaine (ingénieur HSE)</div>
-          <div class="temps-ia">⚡ 2-4 heures</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 9 — APPELS D'OFFRES RÉDACTION
-══════════════════════════════════════ -->
-<section class="page-section" id="appels">
-  <div class="section-header">
-    <div class="section-number">09</div>
-    <div class="section-title-block">
-      <h2>Appels d'Offres — Rédaction & Veille Commerciale</h2>
-      <p>Le Défi de la conquête commerciale à ressources limitées</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — ROI commercial direct</div>
-      <div class="cas-numero">CAS D'USAGE / 18</div>
-      <div class="cas-titre">Génération de Mémoires Techniques sur Appels d'Offres</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Rédiger un mémoire technique percutant mobilise 3 à 5 jours d'un ingénieur d'études senior. Sur des AO à fort volume, les équipes commerciales doivent choisir lesquels répondre — et ratent des opportunités rentables faute de temps.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">À partir du DCE fourni et d'une base de retours d'expérience projets, génération d'un premier jet de mémoire technique structuré (méthodologie, organigramme, planning, références similaires), adapté aux critères de notation du règlement de consultation.</div>
-        <div class="cas-livrable">📦 Livrable : Mémoire technique Word (~30-50 pages) structuré selon le RC — prêt pour relecture et personnalisation par l'ingénieur d'études</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~3-5 jours (ingénieur d'études)</div>
-          <div class="temps-ia">⚡ 1 jour (relecture incluse)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 19</div>
-      <div class="cas-titre">Veille Automatisée sur Appels d'Offres Publics (BOAMP / TED / Marchés Online)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Les directions commerciales téléchargent manuellement les avis de marché du BOAMP et TED, et passent des heures à trier pour identifier les AO pertinents selon leur métier, leur zone géographique et leur capacité financière.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Analyse d'un corpus d'avis BOAMP/TED téléchargés, classement automatique par score de pertinence (métier, zone, montant estimé, délai de réponse) et génération d'une synthèse hebdomadaire des 10 meilleures opportunités avec fiche résumée par AO.</div>
-        <div class="cas-livrable">📦 Livrable : Rapport hebdomadaire Excel "Top 10 AO" + fiches de synthèse par opportunité (1 page/AO)</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Mistral-Nemo-12B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~4-6 h/semaine (chargé d'affaires)</div>
-          <div class="temps-ia">⚡ 30 minutes</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 10 — RÉCEPTION DE CHANTIER
-══════════════════════════════════════ -->
-<section class="page-section" id="reception">
-  <div class="section-header">
-    <div class="section-number">10</div>
-    <div class="section-title-block">
-      <h2>Réception de Chantier & Levée de Réserves</h2>
-      <p>Le Défi de la clôture contractuelle sans litige</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 20</div>
-      <div class="cas-titre">Consolidation des PV de Réception Multi-Lots (Punchlist Globale)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">À la réception d'un ouvrage complexe, des dizaines de PV de réception par lot (gros œuvre, second œuvre, CVC, électricité, VRD) contiennent des réserves éparpillées, parfois redondantes ou contradictoires entre lots.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Fusion et déduplication intelligente des réserves issues de tous les PV, classification par criticité (bloquante / majeure / mineure), identification du sous-traitant responsable, génération d'un tableau de suivi unique avec dates butoir et statut de levée.</div>
-        <div class="cas-livrable">📦 Livrable : Punchlist globale Excel consolidée + tableau de bord PowerBI "Suivi Levée de Réserves" par lot et par zone BIM</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1 semaine (conducteur de travaux)</div>
-          <div class="temps-ia">⚡ 4-8 heures</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 21</div>
-      <div class="cas-titre">Rédaction de Lettres de Mise en Demeure pour Réserves Non Levées</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Chaque réserve non levée dans les délais contractuels nécessite une mise en demeure formelle. La rédaction par le juriste ou le conducteur de travaux prend 1 à 2 heures par courrier, pour des centaines de réserves potentielles.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Génération automatique en lot de projets de lettres de mise en demeure, à partir de la Punchlist et des échanges tracés, avec référence exacte au PV de réception, à la clause contractuelle et au délai dépassé. Prêtes pour signature après validation juridique.</div>
-        <div class="cas-livrable">📦 Livrable : Lot de courriers Word individualisés + tableau récapitulatif des mises en demeure par sous-traitant</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1-2 h/courrier (juriste)</div>
-          <div class="temps-ia">⚡ Lot complet en 1 heure</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SECTION 11 — TRANSVERSAL
-══════════════════════════════════════ -->
-<section class="page-section" id="transversal">
-  <div class="section-header">
-    <div class="section-number">11</div>
-    <div class="section-title-block">
-      <h2>Prestations Transversales</h2>
-      <p>Traduction technique · Veille réglementaire · Vision IA sur photos de chantier</p>
-    </div>
-  </div>
-
-  <div class="cas-grid">
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 22</div>
-      <div class="cas-titre">Traduction Technique Offline — Documents BIM & Contractuels (FR ↔ EN ↔ DE ↔ IT)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Sur les grands projets d'infrastructure internationaux, les CCTP, spécifications techniques et contrats doivent circuler en 2 à 3 langues. Les traducteurs cloud (DeepL, Google) sont interdits par les clauses NDA et ne respectent pas la terminologie métier maison.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Traduction 100% offline avec un glossaire technique maître fourni par le client (noms d'équipements, codes de référence, terminologie contractuelle spécifique), garantissant cohérence terminologique sur l'ensemble du projet.</div>
-        <div class="cas-livrable">📦 Livrable : Documents traduits (Word/PDF) + glossaire bilingue enrichi mis à jour — aucune donnée transmise à un tiers</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Qwen-2.5-32B-Instruct</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">~1-2 sem. (traducteur technique)</div>
-          <div class="temps-ia">⚡ 24-48 heures</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card">
-      <div class="cas-numero">CAS D'USAGE / 23</div>
-      <div class="cas-titre">Analyse d'Impact Réglementaire sur Projets en Cours (DTU, Eurocodes, Arrêtés)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Les responsables qualité et les bureaux d'études passent des heures à surveiller les évolutions normatives (DTU, Eurocodes, arrêtés préfectoraux, normes EN/ISO) et à identifier lesquelles impactent les projets en cours. Ce travail est rarement fait exhaustivement.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">À partir d'un corpus de nouvelles normes et textes réglementaires téléchargés, identification des articles impactant les projets en cours et génération d'une note d'impact structurée par lot et par discipline, avec les actions correctives recommandées.</div>
-        <div class="cas-livrable">📦 Livrable : Note d'impact réglementaire Word (par projet/lot) + tableau de veille Excel mis à jour avec références normatives</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 Command-R-35B</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">Rarement fait exhaustivement</div>
-          <div class="temps-ia">⚡ 4-8 heures / trimestre</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cas-card poc-recommande">
-      <div class="poc-badge">⭐ POC Recommandé — Différenciateur fort</div>
-      <div class="cas-numero">CAS D'USAGE / 24</div>
-      <div class="cas-titre">Classement & Annotation Automatique des Photos de Chantier (Vision IA)</div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">Le Problème</div>
-        <div class="cas-bloc-texte">Les chantiers génèrent des milliers de photos (drones, smartphones, inspections) non classées, non datées, sans lien avec la zone BIM concernée. Ces données visuelles précieuses restent inexploitées dans des dossiers partagés désorganisés.</div>
-      </div>
-
-      <div class="cas-bloc">
-        <div class="cas-bloc-label">L'Action de l'Agence</div>
-        <div class="cas-bloc-texte">Analyse visuelle locale par modèle multimodal (LLaVA / MiniCPM-V) : classification automatique par zone, lot et niveau d'avancement ; détection de non-conformités visuelles (EPI manquants, zone non conforme au plan) ; association à la zone BIM correspondante et alimentation du rapport d'avancement avec preuves photographiques.</div>
-        <div class="cas-livrable">📦 Livrable : Base de données photos indexée + rapport d'avancement illustré + liste des non-conformités visuelles détectées avec photo source</div>
-      </div>
-
-      <div class="cas-footer">
-        <div class="modele-tag">🧠 LLaVA / MiniCPM-V (Vision locale)</div>
-        <div class="temps-bloc">
-          <div class="temps-humain">Données non exploitées</div>
-          <div class="temps-ia">⚡ 48h pour 5 000 photos</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     MODÈLE ÉCONOMIQUE
-══════════════════════════════════════ -->
-<section class="page-section" id="tarifs">
-  <div class="section-header">
-    <div class="section-number">12</div>
-    <div class="section-title-block">
-      <h2>Modèle Économique</h2>
-      <p>Facturation transparente — Pas de surprise en fin de projet</p>
-    </div>
-  </div>
-
-  <div class="tarif-grid">
-
-    <div class="tarif-card">
-      <div class="tarif-nom">POC Pilote</div>
-      <div class="tarif-desc">Un bâtiment test, un lot documentaire ou une petite infrastructure. Résultat livré en 5 jours ouvrés sous NDA strict.</div>
-      <div class="tarif-prix">Sur devis</div>
-      <div class="tarif-unite">À partir de 1 500 € HT</div>
-      <ul class="tarif-liste">
-        <li>1 cas d'usage au choix</li>
-        <li>Rapport de qualité inclus</li>
-        <li>NDA et confidentialité contractuelle</li>
-        <li>Traitement 100% offline</li>
-      </ul>
-    </div>
-
-    <div class="tarif-card featured">
-      <div class="tarif-nom">Forfait Projet</div>
-      <div class="tarif-desc">Périmètre défini en amont (nombre de documents, cas d'usage, livrables). Prix ferme, sans dépassement.</div>
-      <div class="tarif-prix">Forfait fixe</div>
-      <div class="tarif-unite">Devis sous 48h sur cahier des charges</div>
-      <ul class="tarif-liste">
-        <li>Jusqu'à 5 cas d'usage combinés</li>
-        <li>Coordination de projet dédiée</li>
-        <li>Livrables ISO 19650 certifiés</li>
-        <li>Révisions incluses (2 cycles)</li>
-        <li>Rapport de traitement complet</li>
-      </ul>
-    </div>
-
-    <div class="tarif-card">
-      <div class="tarif-nom">Volume & Abonnement</div>
-      <div class="tarif-desc">Pour les structures avec des flux documentaires récurrents (CRC hebdomadaires, bons d'intervention mensuels, audits trimestriels).</div>
-      <div class="tarif-prix">Au volume</div>
-      <div class="tarif-unite">Tarif dégressif dès 500 documents/mois</div>
-      <ul class="tarif-liste">
-        <li>Traitement récurrent automatisé</li>
-        <li>Tableau de bord de suivi mensuel</li>
-        <li>SLA de traitement garanti par contrat</li>
-        <li>Accès prioritaire aux nouveaux modèles</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     ARGUMENTAIRE FINAL
-══════════════════════════════════════ -->
-<section class="page-section">
-  <div class="argumentaire">
-    <blockquote>
-      "Monsieur le Directeur, vous possédez les propriétés intellectuelles les plus précieuses au monde. Vos ingénieurs ne peuvent pas se permettre d'uploader les spécifications techniques de votre prochain projet sur un service cloud commercial."
-    </blockquote>
-
-    <div class="risque-bloc">
-      ⚠️ <strong>Le risque n'est pas théorique :</strong> un seul document confidentiel uploadé sur ChatGPT constitue une violation potentielle de vos clauses NDA et peut engager votre responsabilité contractuelle. En externalisant à notre agence, vous obtenez la puissance de l'IA de pointe, <strong>tout en garantissant par contrat</strong> que le traitement est effectué sur des serveurs physiquement déconnectés d'Internet. Vos secrets restent des secrets. Vos équipes gagnent des mois de travail.
-    </div>
-
-    <div class="infra-note" style="text-align:left; max-width:800px; margin: 0 auto;">
-      <div class="infra-icon-bloc">
-        <span class="infra-icon">🔒</span>
-        <div class="infra-icon-label">100% Offline</div>
-      </div>
-      <div class="infra-texte">
-        <h3>Infrastructure BPO Souveraine</h3>
-        <p>Traitement exclusivement sur workstations locales air-gapped. Aucune donnée ne transite sur Internet. Infrastructure certifiée pour les clients soumis à des obligations de confidentialité (Défense, Santé, Infrastructure Critique).</p>
-        <div class="infra-specs">
-          <span class="spec-pill">NVIDIA RTX 4090 / 2×RTX 3090</span>
-          <span class="spec-pill">128 Go DDR5</span>
-          <span class="spec-pill">Mac Studio M3 Ultra</span>
-          <span class="spec-pill">LM Studio — Modèles locaux</span>
-          <span class="spec-pill">Zéro cloud tiers</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     POC — ÉTAPES
-══════════════════════════════════════ -->
-<section class="page-section" id="poc">
-  <div class="section-header">
-    <div class="section-number">13</div>
-    <div class="section-title-block">
-      <h2>La Prochaine Étape : Le POC</h2>
-      <p>Proof of Concept — Résultat livré en 5 jours ouvrés</p>
-    </div>
-  </div>
-
-  <div class="poc-section">
-    <div class="poc-texte">
-      <h3>Confiance d'abord, déploiement ensuite.</h3>
-      <p>Confiez-nous un bâtiment test, un lot de 500 documents ou une petite infrastructure sous contrat NDA strict. En 5 jours ouvrés, nous vous livrons le résultat complet avec un rapport de qualité — avant tout déploiement global.</p>
-      <p>Cas d'usage recommandés pour un premier POC à fort retour sur investissement :</p>
-      <ul style="list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:8px;">
-        <li style="font-size:14px; color:var(--or-pale);">⭐ CU 01 — Extraction de cartouches de plans</li>
-        <li style="font-size:14px; color:var(--or-pale);">⭐ CU 03 — Synthèse des rapports de Clashs</li>
-        <li style="font-size:14px; color:var(--or-pale);">⭐ CU 05 — Analyse de risques DCE (Go/No-Go)</li>
-        <li style="font-size:14px; color:var(--or-pale);">⭐ CU 09 — Structuration GMAO (Punchlist)</li>
-      </ul>
-      <a href="mailto:contact@agence-bpo.com" class="cta-button">Demander un devis POC →</a>
-    </div>
-
-    <div class="poc-etapes">
-      <div class="poc-etape">
-        <div class="poc-etape-num">1</div>
-        <div>
-          <div class="poc-etape-titre">Appel de cadrage (30 min)</div>
-          <div class="poc-etape-desc">Définition du périmètre, signature du NDA, remise sécurisée des documents de test.</div>
-        </div>
-      </div>
-      <div class="poc-etape">
-        <div class="poc-etape-num">2</div>
-        <div>
-          <div class="poc-etape-titre">Traitement offline (1-3 jours)</div>
-          <div class="poc-etape-desc">Traitement sur notre infrastructure locale. Zéro donnée sur Internet. Rapport de traitement en temps réel.</div>
-        </div>
-      </div>
-      <div class="poc-etape">
-        <div class="poc-etape-num">3</div>
-        <div>
-          <div class="poc-etape-titre">Livraison + audit qualité (J+5)</div>
-          <div class="poc-etape-desc">Livraison des données structurées + rapport de qualité avec taux d'erreur mesuré + recommandations de déploiement global.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     LEXIQUE
-══════════════════════════════════════ -->
-<section class="page-section">
-  <div class="section-header">
-    <div class="section-number">14</div>
-    <div class="section-title-block">
-      <h2>Lexique</h2>
-      <p>Abréviations utilisées dans ce document</p>
-    </div>
-  </div>
-
-  <div class="lexique-grid">
-    <div class="lexique-item"><span class="lexique-terme">BIM / BIM GEM</span><span class="lexique-def">Modélisation des Informations du Bâtiment / Gestion, Exploitation, Maintenance</span></div>
-    <div class="lexique-item"><span class="lexique-terme">BPO</span><span class="lexique-def">Business Process Outsourcing — Externalisation de processus métier</span></div>
-    <div class="lexique-item"><span class="lexique-terme">CCTP / DCE</span><span class="lexique-def">Cahier des Clauses Techniques Particulières / Dossier de Consultation des Entreprises</span></div>
-    <div class="lexique-item"><span class="lexique-terme">COBie</span><span class="lexique-def">Format standard international pour le transfert de données d'équipements (BS 1192-4)</span></div>
-    <div class="lexique-item"><span class="lexique-terme">CRC</span><span class="lexique-def">Compte Rendu de Chantier</span></div>
-    <div class="lexique-item"><span class="lexique-terme">DOE / DIUO</span><span class="lexique-def">Dossier d'Ouvrage Exécuté / Dossier d'Intervention Ultérieure sur l'Ouvrage</span></div>
-    <div class="lexique-item"><span class="lexique-terme">ESG / FDES</span><span class="lexique-def">Environnement, Social, Gouvernance / Fiche de Déclaration Environnementale (≡ EPD)</span></div>
-    <div class="lexique-item"><span class="lexique-terme">GED / GMAO</span><span class="lexique-def">Gestion Électronique des Documents / Gestion de Maintenance Assistée par Ordinateur</span></div>
-    <div class="lexique-item"><span class="lexique-terme">GUID</span><span class="lexique-def">Identifiant unique global d'un objet dans une maquette numérique</span></div>
-    <div class="lexique-item"><span class="lexique-terme">LLM / RAG / NER</span><span class="lexique-def">Grand Modèle de Langage / Génération Augmentée par Recherche / Reconnaissance d'Entités Nommées</span></div>
-    <div class="lexique-item"><span class="lexique-terme">NDA / POC</span><span class="lexique-def">Accord de Confidentialité / Preuve de Concept</span></div>
-    <div class="lexique-item"><span class="lexique-terme">RE2020 / INIES / BBCA</span><span class="lexique-def">Réglementation Environnementale 2020 / Base de données FDES françaises / Label Bâtiment Bas Carbone</span></div>
-    <div class="lexique-item"><span class="lexique-terme">PPSPS</span><span class="lexique-def">Plan Particulier de Sécurité et de Protection de la Santé — obligation légale R4532-61 du Code du Travail</span></div>
-    <div class="lexique-item"><span class="lexique-terme">BOAMP / TED</span><span class="lexique-def">Bulletin Officiel des Annonces des Marchés Publics / Tenders Electronic Daily (UE)</span></div>
-    <div class="lexique-item"><span class="lexique-terme">RC / DCE</span><span class="lexique-def">Règlement de Consultation / Dossier de Consultation des Entreprises</span></div>
-    <div class="lexique-item"><span class="lexique-terme">PV de Réception</span><span class="lexique-def">Procès-Verbal de Réception — acte juridique marquant le transfert de responsabilité entre entrepreneur et maître d'ouvrage</span></div>
-    <div class="lexique-item"><span class="lexique-terme">CACES / HSE</span><span class="lexique-def">Certificat d'Aptitude à la Conduite En Sécurité / Hygiène, Sécurité, Environnement</span></div>
-    <div class="lexique-item"><span class="lexique-terme">LLaVA / MiniCPM-V</span><span class="lexique-def">Modèles IA multimodaux (texte + vision) pouvant fonctionner entièrement en local sur GPU</span></div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
-<footer class="footer">
-  <div class="footer-left">
-    OFFRE BPO DATA & BIM — CONFIDENTIEL<br>
-    © 2025 — Tous droits réservés
-  </div>
-  <div class="iso-badge">
-    🛡 ISO 19650 · Traitement 100% Offline · NDA Systématique
-  </div>
-</footer>
-
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Animations and Navbar Scroll Effect
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/80', 'backdrop-blur-lg');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-dark/80', 'backdrop-blur-lg');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                }
+            });
+        });
+
+        // --- MULTILINGUAL SYSTEM (i18n) ---
+        const translations = {
+            fr: {
+                nav_approach: "Notre Approche",
+                nav_usecases: "Cas d'Usage",
+                nav_poc: "Demander un POC",
+                hero_badge: "Traitement 100% Hors-Ligne & Sécurisé",
+                hero_title_1: "Vos données sont trop précieuses",
+                hero_title_2: "pour les confier au Cloud.",
+                hero_desc: "L'agence BPO spécialisée dans le traitement par Intelligence Artificielle pour les géants de l'Ingénierie, du BIM et de la Construction. <strong class='text-gray-200 font-medium'>Vos secrets industriels restent sous scellé.</strong>",
+                hero_btn_poc: "Démarrer un Pilote (POC)",
+                hero_btn_cases: "Découvrir les cas d'usage",
+                norms_title: "Nos processus répondent aux exigences les plus strictes",
+                norm_1: "RGPD STRICT",
+                norm_2: "SECRET PROFESSIONNEL",
+                norm_3: "SECRET DES AFFAIRES",
+                dilemma_title: "Le Dilemme de l'Ingénierie",
+                dilemma_p1: "Les équipes de conception et d'exploitation perdent des milliers d'heures sur des tâches manuelles (extraction de plans, relecture de CCTP, traitement de baux).",
+                dilemma_p2: "Pourtant, le niveau de confidentialité de vos projets vous <strong class='text-white'>interdit formellement</strong> d'utiliser des intelligences artificielles commerciales comme ChatGPT. Le risque d'espionnage industriel est trop grand.",
+                dilemma_sol_title: "La Solution \"Air-Gapped\"",
+                dilemma_sol_desc: "Nous déployons des Modèles d'IA massifs sur nos propres \"Forges\" de calcul locales. La machine est physiquement déconnectée d'Internet. La fuite de données est mathématiquement impossible.",
+                diag_1_title: "Zéro Cloud",
+                diag_1_desc: "Aucune API externe utilisée.",
+                diag_2_title: "Traitement sur Serveur Local",
+                diag_2_desc: "Puces ultra-puissantes dédiées.",
+                diag_3_title: "Destruction Post-Livraison",
+                diag_3_desc: "Purge militaire des données à 24h.",
+                cases_title: "L'Intelligence Artificielle au service du BIM et du BTP",
+                cases_subtitle: "Découvrez comment nous automatisons vos tâches les plus chronophages avec une précision chirurgicale.",
+                card_1_title: "Structuration de l'Historique",
+                card_1_desc: "Conversion de milliers de plans scannés et fiches techniques hétérogènes en bases de données structurées (COBie) prêtes pour l'injection BIM.",
+                card_1_roi: "ROI: 6 mois de saisie humaine réduits à 48h.",
+                card_2_title: "Analyse Juridique & DCE",
+                card_2_desc: "Ingestion de cahiers des charges (CCTP) de 3000 pages. Identification des risques, clauses abusives et vérification de la conformité avec la maquette.",
+                card_2_roi: "0% d'oubli sur les normes d'incendie ou pénalités.",
+                card_3_title: "Facility Management (GEM)",
+                card_3_desc: "Analyse des rapports d'intervention textes libres et des baux commerciaux pour alimenter instantanément votre logiciel de GMAO (Maximo, Archibus).",
+                card_3_roi: "Mise à jour patrimoniale automatisée.",
+                card_4_title: "Anonymisation (Scrubbing)",
+                card_4_desc: "Nettoyage intelligent des plans et maquettes avant envoi aux sous-traitants. Remplacement des noms de projets confidentiels par des codes génériques.",
+                card_4_roi: "Protection totale du secret industriel.",
+                card_5_title: "Routines & Plugins CAO/BIM",
+                card_5_desc: "Génération de code informatique sur-mesure (AutoLISP pour AutoCAD, C# pour API Revit) pour automatiser vos tâches de conception internes.",
+                card_5_roi: "Sans exposer votre code source à ChatGPT.",
+                card_6_title: "Bilan Carbone & ESG",
+                card_6_desc: "Extraction massive des données environnementales (fiches FDES/EPD en PDF) et liaison automatique avec les nomenclatures de la maquette.",
+                card_6_roi: "Calcul d'empreinte automatisé.",
+                poc_title: "Ne nous croyez pas sur parole. <br>Testez-nous.",
+                poc_desc: "Nous savons que la confiance se mérite. Demandez votre <strong class='text-white'>Proof of Concept (POC)</strong> : confiez-nous un jeu de données réduit sous contrat NDA strict. Nous vous prouverons notre précision et notre sécurité avant tout déploiement.",
+                form_name: "Nom Complet",
+                form_company: "Entreprise",
+                form_email: "Email Professionnel",
+                form_need: "Quel est votre besoin principal ?",
+                form_opt_1: "Structuration de données historiques (PDF/Plans)",
+                form_opt_2: "Analyse de DCE / CCTP",
+                form_opt_3: "Anonymisation de documents (Scrubbing)",
+                form_opt_4: "Développement d'outils (AutoLISP / Revit API)",
+                form_opt_5: "Autre...",
+                form_submit: "Demander un contact confidentiel",
+                form_secure: "Vos données sont chiffrées de bout en bout.",
+                footer_rights: "Tous droits réservés.",
+                footer_legal: "Mentions Légales",
+                footer_privacy: "Politique de Confidentialité (RGPD)"
+            },
+            en: {
+                nav_approach: "Our Approach",
+                nav_usecases: "Use Cases",
+                nav_poc: "Request a POC",
+                hero_badge: "100% Offline & Secure Processing",
+                hero_title_1: "Your data is too precious",
+                hero_title_2: "to be trusted to the Cloud.",
+                hero_desc: "The specialized BPO agency for Artificial Intelligence processing tailored for Engineering, BIM, and Construction giants. <strong class='text-gray-200 font-medium'>Your trade secrets remain strictly sealed.</strong>",
+                hero_btn_poc: "Start a Pilot (POC)",
+                hero_btn_cases: "Explore use cases",
+                norms_title: "Our processes meet the strictest requirements",
+                norm_1: "STRICT GDPR",
+                norm_2: "PROFESSIONAL SECRECY",
+                norm_3: "TRADE SECRETS",
+                dilemma_title: "The Engineering Dilemma",
+                dilemma_p1: "Design and operations teams lose thousands of hours on manual tasks (blueprint extraction, specifications review, lease processing).",
+                dilemma_p2: "However, the confidentiality level of your projects <strong class='text-white'>strictly prohibits</strong> the use of commercial AIs like ChatGPT. The risk of industrial espionage is simply too high.",
+                dilemma_sol_title: "The \"Air-Gapped\" Solution",
+                dilemma_sol_desc: "We deploy massive AI models on our own local computing \"Forges\". The machine is physically disconnected from the internet. Data leakage is mathematically impossible.",
+                diag_1_title: "Zero Cloud",
+                diag_1_desc: "No external APIs used.",
+                diag_2_title: "Local Server Processing",
+                diag_2_desc: "Dedicated ultra-powerful chips.",
+                diag_3_title: "Post-Delivery Destruction",
+                diag_3_desc: "Military-grade data purge within 24h.",
+                cases_title: "Artificial Intelligence for BIM and Construction",
+                cases_subtitle: "Discover how we automate your most time-consuming tasks with surgical precision.",
+                card_1_title: "Historical Data Structuring",
+                card_1_desc: "Conversion of thousands of scanned blueprints and heterogeneous technical sheets into structured databases (COBie) ready for BIM injection.",
+                card_1_roi: "ROI: 6 months of human entry reduced to 48h.",
+                card_2_title: "Legal & Tender Analysis",
+                card_2_desc: "Ingestion of 3,000-page technical specifications. Identification of risks, unfair clauses, and compliance verification with the digital twin.",
+                card_2_roi: "0% oversight on fire standards or penalties.",
+                card_3_title: "Facility Management (GEM)",
+                card_3_desc: "Analysis of free-text intervention reports and commercial leases to instantly feed your CMMS software (Maximo, Archibus).",
+                card_3_roi: "Automated asset updates.",
+                card_4_title: "Data Scrubbing & Anonymization",
+                card_4_desc: "Intelligent cleaning of blueprints and models before sending to subcontractors. Replacing confidential project names with generic codes.",
+                card_4_roi: "Total protection of industrial secrets.",
+                card_5_title: "Custom CAD/BIM Plugins",
+                card_5_desc: "Generation of tailored code (AutoLISP for AutoCAD, C# for Revit API) to automate your internal design workflows.",
+                card_5_roi: "Without exposing your source code to ChatGPT.",
+                card_6_title: "Carbon Footprint & ESG",
+                card_6_desc: "Mass extraction of environmental data (EPD/FDES sheets in PDF) and automatic linking with the 3D model's material schedules.",
+                card_6_roi: "Automated footprint calculation.",
+                poc_title: "Don't just take our word for it. <br>Test us.",
+                poc_desc: "We know trust must be earned. Request your <strong class='text-white'>Proof of Concept (POC)</strong>: entrust us with a reduced dataset under a strict NDA. We will prove our precision and security before any full deployment.",
+                form_name: "Full Name",
+                form_company: "Company",
+                form_email: "Professional Email",
+                form_need: "What is your main need?",
+                form_opt_1: "Historical data structuring (PDF/Blueprints)",
+                form_opt_2: "Specifications / Tender Analysis",
+                form_opt_3: "Document Anonymization (Scrubbing)",
+                form_opt_4: "Tool Development (AutoLISP / Revit API)",
+                form_opt_5: "Other...",
+                form_submit: "Request a confidential contact",
+                form_secure: "Your data is encrypted end-to-end.",
+                footer_rights: "All rights reserved.",
+                footer_legal: "Legal Notice",
+                footer_privacy: "Privacy Policy (GDPR)"
+            },
+            es: {
+                nav_approach: "Nuestro Enfoque",
+                nav_usecases: "Casos de Uso",
+                nav_poc: "Solicitar un POC",
+                hero_badge: "Procesamiento 100% Fuera de Línea y Seguro",
+                hero_title_1: "Sus datos son demasiado valiosos",
+                hero_title_2: "para confiarlos a la Nube.",
+                hero_desc: "La agencia BPO especializada en procesamiento por Inteligencia Artificial para los gigantes de la Ingeniería, BIM y Construcción. <strong class='text-gray-200 font-medium'>Sus secretos industriales permanecen bajo sello.</strong>",
+                hero_btn_poc: "Iniciar un Piloto (POC)",
+                hero_btn_cases: "Descubrir casos de uso",
+                norms_title: "Nuestros procesos cumplen con los requisitos más estrictos",
+                norm_1: "RGPD ESTRICTO",
+                norm_2: "SECRETO PROFESIONAL",
+                norm_3: "SECRETOS COMERCIALES",
+                dilemma_title: "El Dilema de la Ingeniería",
+                dilemma_p1: "Los equipos de diseño y operaciones pierden miles de horas en tareas manuales (extracción de planos, revisión de especificaciones, procesamiento de contratos).",
+                dilemma_p2: "Sin embargo, el nivel de confidencialidad de sus proyectos le <strong class='text-white'>prohíbe estrictamente</strong> utilizar IA comerciales como ChatGPT. El riesgo de espionaje industrial es demasiado alto.",
+                dilemma_sol_title: "La Solución \"Air-Gapped\"",
+                dilemma_sol_desc: "Desplegamos modelos masivos de IA en nuestras propias \"Forjas\" de cálculo locales. La máquina está físicamente desconectada de Internet. La fuga de datos es matemáticamente imposible.",
+                diag_1_title: "Cero Nube",
+                diag_1_desc: "Sin uso de APIs externas.",
+                diag_2_title: "Procesamiento en Servidor Local",
+                diag_2_desc: "Chips dedicados ultrapotentes.",
+                diag_3_title: "Destrucción Post-Entrega",
+                diag_3_desc: "Purga militar de datos en 24h.",
+                cases_title: "Inteligencia Artificial para BIM y Construcción",
+                cases_subtitle: "Descubra cómo automatizamos sus tareas más lentas con precisión quirúrgica.",
+                card_1_title: "Estructuración de Históricos",
+                card_1_desc: "Conversión de miles de planos escaneados y fichas técnicas heterogéneas en bases de datos estructuradas (COBie) listas para la inyección BIM.",
+                card_1_roi: "ROI: 6 meses de entrada humana reducidos a 48h.",
+                card_2_title: "Análisis Legal y Licitaciones",
+                card_2_desc: "Ingestión de especificaciones técnicas de 3000 páginas. Identificación de riesgos, cláusulas abusivas y verificación de cumplimiento con el modelo 3D.",
+                card_2_roi: "0% de omisión en normas de incendio o sanciones.",
+                card_3_title: "Gestión de Instalaciones (GEM)",
+                card_3_desc: "Análisis de informes de intervención de texto libre y contratos comerciales para alimentar instantáneamente su software GMAO (Maximo, Archibus).",
+                card_3_roi: "Actualización patrimonial automatizada.",
+                card_4_title: "Anonimización (Scrubbing)",
+                card_4_desc: "Limpieza inteligente de planos y modelos antes de enviarlos a subcontratistas. Reemplazo de nombres de proyectos confidenciales por códigos genéricos.",
+                card_4_roi: "Protección total del secreto industrial.",
+                card_5_title: "Plugins Personalizados CAD/BIM",
+                card_5_desc: "Generación de código a medida (AutoLISP para AutoCAD, C# para API Revit) para automatizar sus flujos de trabajo de diseño internos.",
+                card_5_roi: "Sin exponer su código fuente a ChatGPT.",
+                card_6_title: "Huella de Carbono y ESG",
+                card_6_desc: "Extracción masiva de datos ambientales (fichas EPD/FDES en PDF) y vinculación automática con los inventarios de materiales del modelo.",
+                card_6_roi: "Cálculo de huella automatizado.",
+                poc_title: "No confíe solo en nuestra palabra. <br>Pónganos a prueba.",
+                poc_desc: "Sabemos que la confianza hay que ganársela. Solicite su <strong class='text-white'>Prueba de Concepto (POC)</strong>: confíenos un conjunto de datos reducido bajo un estricto acuerdo de confidencialidad. Demostraremos nuestra precisión y seguridad antes de cualquier despliegue.",
+                form_name: "Nombre Completo",
+                form_company: "Empresa",
+                form_email: "Correo Profesional",
+                form_need: "¿Cuál es su necesidad principal?",
+                form_opt_1: "Estructuración de datos históricos (PDF/Planos)",
+                form_opt_2: "Análisis de Especificaciones / Licitaciones",
+                form_opt_3: "Anonimización de documentos (Scrubbing)",
+                form_opt_4: "Desarrollo de Herramientas (AutoLISP / Revit API)",
+                form_opt_5: "Otro...",
+                form_submit: "Solicitar contacto confidencial",
+                form_secure: "Sus datos están cifrados de extremo a extremo.",
+                footer_rights: "Todos los derechos reservados.",
+                footer_legal: "Aviso Legal",
+                footer_privacy: "Política de Privacidad (RGPD)"
+            }
+        };
+
+        // Handle Language Change
+        const langSwitch = document.getElementById('lang-switch');
+        
+        langSwitch.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.documentElement.lang = lang; // Update HTML lang attribute
+            
+            // Find all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    // Use innerHTML because some translations contain HTML tags like <strong> or <br>
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        });
+    </script>
 </body>
 </html>
