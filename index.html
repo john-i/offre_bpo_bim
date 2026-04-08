@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kairos Intelligence — IA souveraine pour PME & BIM</title>
+<title>Axe Studio — IA souveraine pour PME & BIM</title>
+<meta name="description" content="Axe Studio automatise les tâches chronophages des PME et acteurs du BIM grâce à une Intelligence Artificielle 100% souveraine, locale et sécurisée.">
+<meta property="og:title" content="Axe Studio — IA souveraine pour PME & BIM">
+<meta property="og:description" content="Automatisez vos tâches répétitives avec une IA qui tourne entièrement chez vous — sans cloud, sans abonnement tiers, sans fuite de données.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -30,9 +34,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5vw;height:72px;di
 nav.scrolled{background:rgba(11,25,41,.96);box-shadow:0 1px 0 rgba(200,169,110,.2);backdrop-filter:blur(12px)}
 .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--white);letter-spacing:.04em;text-decoration:none}
 .logo span{color:var(--gold)}
+.nav-center{display:flex;align-items:center;gap:2.2rem}
 .nav-links{display:flex;gap:2.2rem;list-style:none}
 .nav-links a{font-size:.82rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.lang-selector{background:transparent;border:none;color:rgba(255,255,255,.72);font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;outline:none;transition:color .2s;}
+.lang-selector:hover{color:var(--gold);}
+.lang-selector option{background:var(--navy);color:var(--white);}
 .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.4rem;cursor:pointer;transition:all .25s;text-decoration:none}
 .nav-cta:hover{background:var(--gold);color:var(--navy)}
 
@@ -72,18 +81,18 @@ section{padding:8rem 5vw}
 #problem{background:var(--white)}
 .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;max-width:1200px;margin:0 auto}
 .problem-visual{position:relative}
-.prob-card{background:var(--navy);padding:2.5rem;position:relative;overflow:hidden}
+.prob-card{background:var(--navy);padding:3rem;position:relative}
 .prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-.prob-card-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:1.5rem}
-.prob-item{display:flex;align-items:flex-start;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
-.prob-item:last-child{border-bottom:none}
-.prob-icon{width:32px;height:32px;border:1px solid rgba(200,169,110,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.prob-card-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);margin-bottom:2rem}
+.prob-item{display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.prob-item:last-of-type{border-bottom:none;padding-bottom:0;margin-bottom:2.5rem}
+.prob-icon{width:32px;height:32px;border:1px solid rgba(200,169,110,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.2rem}
 .prob-icon svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.5}
-.prob-text{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.6}
-.prob-text strong{color:rgba(255,255,255,.9);font-weight:400}
-.prob-float{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--gold);padding:1.2rem 1.6rem;text-align:center}
-.prob-float-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--navy);line-height:1}
-.prob-float-text{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);opacity:.7;margin-top:.2rem}
+.prob-text{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.7);line-height:1.7}
+.prob-text strong{color:rgba(255,255,255,.95);font-weight:400}
+.prob-float{position:absolute;bottom:-2rem;right:-2rem;background:var(--gold);padding:1.5rem 2rem;text-align:center;box-shadow:0 15px 30px rgba(0,0,0,.2);z-index:10}
+.prob-float-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--navy);line-height:1}
+.prob-float-text{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);opacity:.8;margin-top:.4rem}
 
 /* ─── APPROACH ─── */
 #approach{background:var(--navy);position:relative;overflow:hidden}
@@ -136,7 +145,7 @@ section{padding:8rem 5vw}
 .sov-point-text strong{color:rgba(255,255,255,.9);font-weight:400}
 .sov-diagram{position:relative}
 .sov-box{border:1px solid rgba(200,169,110,.25);padding:2rem 2.5rem;position:relative}
-.sov-box::before{content:'Infrastructure locale';position:absolute;top:-10px;left:1.5rem;background:var(--navy-mid);padding:0 .6rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.sov-box::before{content:attr(data-box-title);position:absolute;top:-10px;left:1.5rem;background:var(--navy-mid);padding:0 .6rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .sov-server{display:flex;flex-direction:column;gap:.8rem}
 .sov-server-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem}
 .sov-server-item svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.3;flex-shrink:0}
@@ -194,14 +203,18 @@ section{padding:8rem 5vw}
 .cta-inner{position:relative;max-width:700px;margin:0 auto}
 .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:1.5rem}
 .cta-title em{font-style:italic;color:var(--gold)}
-.cta-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:3rem}
-.cta-form{display:flex;gap:0;max-width:480px;margin:0 auto}
-.cta-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(200,169,110,.3);border-right:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;padding:.9rem 1.4rem;outline:none;transition:border-color .2s}
-.cta-input::placeholder{color:rgba(255,255,255,.3)}
+.cta-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:3rem}
+.cta-form{display:flex;flex-direction:column;gap:1rem;max-width:400px;margin:0 auto}
+.cta-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(200,169,110,.3);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;padding:.9rem 1.4rem;outline:none;transition:border-color .2s}
+.cta-input::placeholder{color:rgba(255,255,255,.5)}
 .cta-input:focus{border-color:var(--gold)}
-.cta-submit{background:var(--gold);border:1px solid var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 1.8rem;cursor:pointer;transition:all .25s;white-space:nowrap}
+.cta-submit{width:100%;background:var(--gold);border:1px solid var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 1.8rem;cursor:pointer;transition:all .25s;white-space:nowrap}
 .cta-submit:hover{background:var(--gold-light)}
-.cta-reassure{font-size:.73rem;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-top:1.2rem;text-transform:uppercase}
+.cta-reassure{font-size:.73rem;letter-spacing:.06em;color:rgba(255,255,255,.5);margin-top:1.2rem;text-transform:uppercase}
+
+/* ─── COOKIE BADGE ─── */
+.cookie-badge{position:fixed;bottom:24px;left:24px;background:rgba(11,25,41,.85);border:1px solid rgba(200,169,110,.3);padding:.6rem 1.2rem;border-radius:50px;display:flex;align-items:center;gap:.6rem;z-index:90;backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .3s}
+.cookie-text{font-size:.75rem;color:rgba(255,255,255,.8);font-weight:400;letter-spacing:.04em}
 
 /* ─── FOOTER ─── */
 footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200,169,110,.12)}
@@ -218,30 +231,59 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ─── MOBILE ─── */
+.mobile-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer;margin-left:1rem;padding:5px}
+.mobile-toggle svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
+
 @media(max-width:768px){
   .problem-grid,.sov-inner{grid-template-columns:1fr}
   .pillars{grid-template-columns:1fr}
   .numbers-inner{grid-template-columns:repeat(2,1fr)}
   .hero-metrics{position:static;padding:3rem 5vw 0;flex-wrap:wrap;gap:2rem}
-  .nav-links{display:none}
-  .cta-form{flex-direction:column}
-  .cta-input{border-right:1px solid rgba(200,169,110,.3)}
+  
+  .prob-card { padding: 2rem; margin-bottom: 2rem; }
+  .prob-float { bottom: -1.5rem; right: 1rem; padding: 1.2rem 1.5rem; }
+
+  .mobile-toggle{display:block}
+  .nav-links{position:absolute;top:72px;left:0;right:0;background:var(--navy-mid);flex-direction:column;padding:2rem 5vw;gap:1.5rem;border-bottom:1px solid rgba(200,169,110,.2);display:none;box-shadow:0 10px 20px rgba(0,0,0,.3)}
+  .nav-links.active{display:flex}
+  
   section{padding:5rem 5vw}
+  .nav-right { gap: .5rem; }
+  .lang-selector { margin-right: 0; }
+  .cookie-badge { bottom: 12px; left: 12px; padding: .5rem 1rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- BADGE SÉCURITÉ -->
+<div class="cookie-badge">
+  <span style="font-size:1rem">🛡️</span>
+  <span class="cookie-text" data-i18n="cookie_badge">Zéro cookie traceur. 100% Confidentiel.</span>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
-  <a class="logo" href="#">Kairos<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#sovereignty">Souveraineté</a></li>
-    <li><a href="#sectors">Secteurs</a></li>
-    <li><a href="#process">Méthode</a></li>
-  </ul>
-  <a href="#cta-final" class="nav-cta">Audit gratuit</a>
+  <a class="logo" href="#">Axe Studio<span>.</span></a>
+  <div class="nav-center">
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#sovereignty" data-i18n="nav_sovereignty">Souveraineté</a></li>
+      <li><a href="#sectors" data-i18n="nav_sectors">Secteurs</a></li>
+      <li><a href="#process" data-i18n="nav_process">Méthode</a></li>
+    </ul>
+  </div>
+  <div class="nav-right">
+    <select id="lang-switch" class="lang-selector" aria-label="Choix de la langue">
+        <option value="fr">FR</option>
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+    </select>
+    <a href="#cta-final" class="nav-cta" data-i18n="nav_cta">Audit gratuit</a>
+    <button class="mobile-toggle" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -250,31 +292,31 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
   <div class="hero-glow"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <div class="hero-badge">IA locale · données souveraines</div>
-    <h1 class="hero-title">
+    <div class="hero-badge" data-i18n="hero_badge">IA locale · données souveraines</div>
+    <h1 class="hero-title" data-i18n="hero_title">
       Récupérez vos heures.<br>
       <em>Gardez vos données.</em>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero_sub">
       Nous automatisons les tâches répétitives de votre entreprise avec une <strong>IA qui tourne entièrement chez vous</strong> — sans cloud, sans abonnement tiers, sans transmission de données confidentielles.
     </p>
     <div class="hero-actions">
-      <a href="#cta-final" class="btn-primary">Demander un audit gratuit</a>
-      <a href="#services" class="btn-ghost">Voir nos services</a>
+      <a href="#cta-final" class="btn-primary" data-i18n="hero_btn_1">Demander un audit gratuit</a>
+      <a href="#services" class="btn-ghost" data-i18n="hero_btn_2">Voir nos services</a>
     </div>
   </div>
   <div class="hero-metrics">
     <div class="metric">
-      <div class="metric-num">8h</div>
-      <div class="metric-label">gagnées / semaine<br>en moyenne</div>
+      <div class="metric-num">8<span style="font-size:0.6em">h</span></div>
+      <div class="metric-label" data-i18n="metric_1">gagnées / semaine<br>en moyenne</div>
     </div>
     <div class="metric">
-      <div class="metric-num">48h</div>
-      <div class="metric-label">pour voir<br>un premier résultat</div>
+      <div class="metric-num">48<span style="font-size:0.6em">h</span></div>
+      <div class="metric-label" data-i18n="metric_2">pour voir<br>un premier résultat</div>
     </div>
     <div class="metric">
       <div class="metric-num">0</div>
-      <div class="metric-label">donnée envoyée<br>à un cloud tiers</div>
+      <div class="metric-label" data-i18n="metric_3">donnée envoyée<br>à un cloud tiers</div>
     </div>
   </div>
 </section>
@@ -283,38 +325,38 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <section id="problem">
   <div class="problem-grid">
     <div class="problem-text reveal">
-      <p class="section-label">Le constat</p>
-      <h2 class="section-title">Vos équipes passent trop de temps sur des tâches qui <em>ne créent pas de valeur</em></h2>
+      <p class="section-label" data-i18n="prob_label">Le constat</p>
+      <h2 class="section-title" data-i18n="prob_title">Vos équipes passent trop de temps sur des tâches qui <em>ne créent pas de valeur</em></h2>
       <div class="divider"></div>
-      <p class="section-sub">
+      <p class="section-sub" data-i18n="prob_sub_1">
         Saisie de factures, relances impayées, tri de documents, comptes-rendus, vérification de conformité… Ces tâches sont nécessaires, mais elles mobilisent des ressources précieuses que vous pourriez consacrer à votre cœur de métier.
       </p>
-      <p class="section-sub" style="margin-top:1rem">
+      <p class="section-sub" style="margin-top:1rem" data-i18n="prob_sub_2">
         Et quand vous cherchez des solutions SaaS, vous vous heurtez à un autre problème : vos données confidentielles partent dans des serveurs que vous ne contrôlez pas.
       </p>
     </div>
     <div class="problem-visual reveal" style="transition-delay:.2s">
       <div class="prob-card">
-        <h3 class="prob-card-title">Ce que l'on entend le plus souvent</h3>
+        <h3 class="prob-card-title" data-i18n="prob_card_title">Ce que l'on entend le plus souvent</h3>
         <div class="prob-item">
           <div class="prob-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-          <p class="prob-text"><strong>« Je passe 4h par semaine à saisir des factures »</strong> — et encore plus à corriger les erreurs de saisie.</p>
+          <p class="prob-text" data-i18n="prob_quote_1"><strong>« Je passe 4h par semaine à saisir des factures »</strong> — et encore plus à corriger les erreurs de saisie.</p>
         </div>
         <div class="prob-item">
           <div class="prob-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <p class="prob-text"><strong>« On reçoit des centaines de documents par projet »</strong> — retrouver la bonne version prend une éternité.</p>
+          <p class="prob-text" data-i18n="prob_quote_2"><strong>« On reçoit des centaines de documents par projet »</strong> — retrouver la bonne version prend une éternité.</p>
         </div>
         <div class="prob-item">
           <div class="prob-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <p class="prob-text"><strong>« On ne peut pas utiliser ChatGPT »</strong> — nos données clients et contrats sont confidentiels.</p>
+          <p class="prob-text" data-i18n="prob_quote_3"><strong>« On ne peut pas utiliser ChatGPT »</strong> — nos données clients et contrats sont confidentiels.</p>
         </div>
         <div class="prob-item">
           <div class="prob-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <p class="prob-text"><strong>« Les réunions de chantier prennent 2h à rédiger »</strong> — et souvent personne ne relit le CR.</p>
+          <p class="prob-text" data-i18n="prob_quote_4"><strong>« Les réunions de chantier prennent 2h à rédiger »</strong> — et souvent personne ne relit le CR.</p>
         </div>
         <div class="prob-float">
-          <div class="prob-float-num">43 Md€</div>
-          <div class="prob-float-text">perdus / an<br>en tâches admin</div>
+          <div class="prob-float-num">43<span style="font-size:0.5em">Md€</span></div>
+          <div class="prob-float-text" data-i18n="prob_float_text">perdus / an<br>en tâches admin</div>
         </div>
       </div>
     </div>
@@ -326,29 +368,29 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
   <div class="bg-pattern"></div>
   <div class="approach-inner">
     <div class="approach-header reveal">
-      <p class="section-label">Notre philosophie</p>
-      <h2 class="section-title" style="color:var(--white)">Une IA qui travaille <em>pour vous</em>,<br>pas contre votre confidentialité</h2>
+      <p class="section-label" data-i18n="app_label">Notre philosophie</p>
+      <h2 class="section-title" style="color:var(--white)" data-i18n="app_title">Une IA qui travaille <em>pour vous</em>,<br>pas contre votre confidentialité</h2>
       <div class="divider"></div>
-      <p class="section-sub">Trois principes fondateurs qui guident chacune de nos interventions.</p>
+      <p class="section-sub" data-i18n="app_sub">Trois principes fondateurs qui guident chacune de nos interventions.</p>
     </div>
     <div class="pillars">
       <div class="pillar reveal">
         <div class="pillar-accent"></div>
         <div class="pillar-num">01</div>
-        <h3 class="pillar-title">Souveraineté totale</h3>
-        <p class="pillar-text">Nos modèles d'IA s'exécutent exclusivement sur une infrastructure locale dédiée. Vos données — factures, contrats, maquettes, plans — ne quittent jamais votre environnement. Zéro transmission vers un cloud étranger.</p>
+        <h3 class="pillar-title" data-i18n="app_p1_title">Souveraineté totale</h3>
+        <p class="pillar-text" data-i18n="app_p1_text">Nos modèles d'IA s'exécutent exclusivement sur une infrastructure locale dédiée. Vos données — factures, contrats, maquettes, plans — ne quittent jamais votre environnement. Zéro transmission vers un cloud étranger.</p>
       </div>
       <div class="pillar reveal" style="transition-delay:.15s">
         <div class="pillar-accent"></div>
         <div class="pillar-num">02</div>
-        <h3 class="pillar-title">Résultats en 48h</h3>
-        <p class="pillar-text">Nous ne faisons pas de grands projets de transformation sur 18 mois. Nous identifions la tâche qui vous coûte le plus de temps, et nous automatisons cette tâche précise en moins de 48 heures. Vous voyez le résultat immédiatement.</p>
+        <h3 class="pillar-title" data-i18n="app_p2_title">Résultats en 48h</h3>
+        <p class="pillar-text" data-i18n="app_p2_text">Nous ne faisons pas de grands projets de transformation sur 18 mois. Nous identifions la tâche qui vous coûte le plus de temps, et nous automatisons cette tâche précise en moins de 48 heures. Vous voyez le résultat immédiatement.</p>
       </div>
       <div class="pillar reveal" style="transition-delay:.3s">
         <div class="pillar-accent"></div>
         <div class="pillar-num">03</div>
-        <h3 class="pillar-title">Expertise métier</h3>
-        <p class="pillar-text">Nous maîtrisons à la fois l'intelligence artificielle et les métiers du BIM, de la construction et de la gestion d'entreprise. Nous parlons votre langage et comprenons vos contraintes réglementaires et documentaires.</p>
+        <h3 class="pillar-title" data-i18n="app_p3_title">Expertise métier</h3>
+        <p class="pillar-text" data-i18n="app_p3_text">Nous maîtrisons à la fois l'intelligence artificielle et les métiers du BIM, de la construction et de la gestion d'entreprise. Nous parlons votre langage et comprenons vos contraintes réglementaires et documentaires.</p>
       </div>
     </div>
   </div>
@@ -357,21 +399,21 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header reveal">
-    <p class="section-label">Nos services</p>
-    <h2 class="section-title">Ce que nous automatisons <em>pour vous</em></h2>
+    <p class="section-label" data-i18n="svc_label">Nos services</p>
+    <h2 class="section-title" data-i18n="svc_title">Ce que nous automatisons <em>pour vous</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">Chaque service est déployé et opérationnel en quelques jours, sur votre infrastructure ou la nôtre.</p>
+    <p class="section-sub" data-i18n="svc_sub">Chaque service est déployé et opérationnel en quelques jours, sur votre infrastructure ou la nôtre.</p>
   </div>
   <div class="services-grid reveal" style="transition-delay:.2s">
     <div class="service-card">
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       </div>
-      <h3 class="svc-title">Comptabilité & Facturation</h3>
-      <p class="svc-text">Lecture automatique des factures fournisseurs, extraction des montants et TVA, pré-saisie dans votre logiciel. Relances impayées intelligentes, rapprochement bancaire mensuel, reporting financier automatisé.</p>
+      <h3 class="svc-title" data-i18n="svc_1_title">Comptabilité & Facturation</h3>
+      <p class="svc-text" data-i18n="svc_1_text">Lecture automatique des factures fournisseurs, extraction des montants et TVA, pré-saisie dans votre logiciel. Relances impayées intelligentes, rapprochement bancaire mensuel, reporting financier automatisé.</p>
       <div class="svc-tags">
         <span class="svc-tag">OCR intelligent</span>
-        <span class="svc-tag">Relances auto</span>
+        <span class="svc-tag" data-i18n="svc_tag_reminders">Relances auto</span>
         <span class="svc-tag">Reporting</span>
       </div>
     </div>
@@ -379,11 +421,11 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
       </div>
-      <h3 class="svc-title">Gestion documentaire BIM</h3>
-      <p class="svc-text">Classification et indexation automatique de vos fichiers IFC, plans PDF et correspondances projet. Recherche sémantique en langage naturel, détection de doublons et de versions obsolètes, suivi documentaire en temps réel.</p>
+      <h3 class="svc-title" data-i18n="svc_2_title">Gestion documentaire BIM</h3>
+      <p class="svc-text" data-i18n="svc_2_text">Classification et indexation automatique de vos fichiers IFC, plans PDF et correspondances projet. Recherche sémantique en langage naturel, détection de doublons et de versions obsolètes.</p>
       <div class="svc-tags">
         <span class="svc-tag">IFC / BIM</span>
-        <span class="svc-tag">Recherche sémantique</span>
+        <span class="svc-tag" data-i18n="svc_tag_search">Recherche sémantique</span>
         <span class="svc-tag">RAG</span>
       </div>
     </div>
@@ -391,11 +433,11 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       </div>
-      <h3 class="svc-title">Service client & Emails</h3>
-      <p class="svc-text">Assistant IA disponible 24h/24 pour répondre aux questions fréquentes, qualifier les demandes et prendre des rendez-vous. Tri et rédaction automatique des emails entrants. Réduction de 40 à 60 % du volume traité manuellement.</p>
+      <h3 class="svc-title" data-i18n="svc_3_title">Service client & Emails</h3>
+      <p class="svc-text" data-i18n="svc_3_text">Assistant IA disponible 24h/24 pour répondre aux questions fréquentes, qualifier les demandes et prendre des rendez-vous. Tri et rédaction automatique des emails entrants.</p>
       <div class="svc-tags">
         <span class="svc-tag">Chatbot</span>
-        <span class="svc-tag">Email auto</span>
+        <span class="svc-tag" data-i18n="svc_tag_email">Email auto</span>
         <span class="svc-tag">24/7</span>
       </div>
     </div>
@@ -403,35 +445,35 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <h3 class="svc-title">Ressources Humaines</h3>
-      <p class="svc-text">Scoring automatique des candidatures selon votre fiche de poste, résumé des 10 meilleurs profils avec justification. Assistant RH interne pour les questions courantes (congés, paie, RTT). Rédaction d'offres d'emploi optimisées.</p>
+      <h3 class="svc-title" data-i18n="svc_4_title">Ressources Humaines</h3>
+      <p class="svc-text" data-i18n="svc_4_text">Scoring automatique des candidatures selon votre fiche de poste. Assistant RH interne pour les questions courantes (congés, paie). Rédaction d'offres d'emploi optimisées.</p>
       <div class="svc-tags">
-        <span class="svc-tag">Tri CV</span>
-        <span class="svc-tag">Assistant RH</span>
-        <span class="svc-tag">Rédaction</span>
+        <span class="svc-tag" data-i18n="svc_tag_cv">Tri CV</span>
+        <span class="svc-tag" data-i18n="svc_tag_hr">Assistant RH</span>
+        <span class="svc-tag" data-i18n="svc_tag_writing">Rédaction</span>
       </div>
     </div>
     <div class="service-card">
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       </div>
-      <h3 class="svc-title">Analyse de documents techniques</h3>
-      <p class="svc-text">Extraction structurée depuis des cahiers des charges volumineux (CCTP, CCAP), rapports techniques, contrats. Identification des exigences clés, tableau des risques, vérification de complétude. Un dossier de 200 pages analysé en 15 minutes.</p>
+      <h3 class="svc-title" data-i18n="svc_5_title">Analyse de documents</h3>
+      <p class="svc-text" data-i18n="svc_5_text">Extraction structurée depuis des cahiers des charges volumineux, rapports techniques, contrats. Identification des exigences clés, tableau des risques. Un dossier de 200 pages analysé en 15 min.</p>
       <div class="svc-tags">
         <span class="svc-tag">CCTP / CCAP</span>
         <span class="svc-tag">Extraction JSON</span>
-        <span class="svc-tag">Risques</span>
+        <span class="svc-tag" data-i18n="svc_tag_risk">Risques</span>
       </div>
     </div>
     <div class="service-card">
       <div class="svc-icon-wrap">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       </div>
-      <h3 class="svc-title">Comptes-rendus & Réunions</h3>
-      <p class="svc-text">Transcription automatique de vos réunions audio ou visio. Génération d'un compte-rendu structuré avec décisions, actions et responsables. Envoi automatique aux participants dans les 5 minutes suivant la fin de la réunion.</p>
+      <h3 class="svc-title" data-i18n="svc_6_title">Comptes-rendus & Réunions</h3>
+      <p class="svc-text" data-i18n="svc_6_text">Transcription automatique de vos réunions audio ou visio. Génération d'un compte-rendu structuré avec décisions et actions. Envoi automatique aux participants.</p>
       <div class="svc-tags">
         <span class="svc-tag">Transcription</span>
-        <span class="svc-tag">Résumé IA</span>
+        <span class="svc-tag" data-i18n="svc_tag_summary">Résumé IA</span>
         <span class="svc-tag">Actions</span>
       </div>
     </div>
@@ -443,48 +485,48 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
   <div class="sov-accent-line"></div>
   <div class="sov-inner">
     <div class="sov-content reveal">
-      <p class="section-label">Confidentialité absolue</p>
-      <h2 class="section-title">Vos données ne quittent <em>jamais</em> votre contrôle</h2>
+      <p class="section-label" data-i18n="sov_label">Confidentialité absolue</p>
+      <h2 class="section-title" data-i18n="sov_title">Vos données ne quittent <em>jamais</em> votre contrôle</h2>
       <div class="divider"></div>
-      <p class="section-sub">C'est notre engagement le plus important. Dans un monde où chaque requête ChatGPT alimente les serveurs d'OpenAI aux États-Unis, nous avons fait un choix radical.</p>
+      <p class="section-sub" data-i18n="sov_sub">C'est notre engagement le plus important. Dans un monde où chaque requête ChatGPT alimente les serveurs américains, nous avons fait un choix radical.</p>
       <div class="sov-points">
         <div class="sov-point">
           <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <p class="sov-point-text"><strong>Infrastructure 100 % locale.</strong> Nos modèles d'IA s'exécutent sur une machine dédiée, sur site ou en datacenter français. Aucune dépendance cloud.</p>
+          <p class="sov-point-text" data-i18n="sov_p1"><strong>Infrastructure 100 % locale.</strong> Nos modèles d'IA s'exécutent sur une machine dédiée, sur site ou en datacenter français. Aucune dépendance cloud.</p>
         </div>
         <div class="sov-point">
           <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <p class="sov-point-text"><strong>RGPD par conception.</strong> Vos factures, contrats, maquettes et données RH restent dans votre périmètre juridique. Conformité RGPD native, sans effort supplémentaire.</p>
+          <p class="sov-point-text" data-i18n="sov_p2"><strong>RGPD par conception.</strong> Vos factures, contrats, maquettes et données RH restent dans votre périmètre juridique. Conformité RGPD native.</p>
         </div>
         <div class="sov-point">
           <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <p class="sov-point-text"><strong>Pas de dépendance à un éditeur.</strong> Nous utilisons des modèles open-source. Vous n'êtes pas tributaire d'un abonnement ou d'une décision d'un acteur américain.</p>
+          <p class="sov-point-text" data-i18n="sov_p3"><strong>Pas de dépendance à un éditeur.</strong> Nous utilisons des modèles open-source. Vous n'êtes pas tributaire d'un abonnement ou d'une décision externe.</p>
         </div>
         <div class="sov-point">
           <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <p class="sov-point-text"><strong>Disponible hors connexion.</strong> Votre IA fonctionne même sans internet. Idéal pour les chantiers, les zones blanches, les environnements sécurisés.</p>
+          <p class="sov-point-text" data-i18n="sov_p4"><strong>Disponible hors connexion.</strong> Votre IA fonctionne même sans internet. Idéal pour les chantiers, les zones blanches, les environnements sécurisés.</p>
         </div>
       </div>
     </div>
     <div class="sov-diagram reveal" style="transition-delay:.25s">
-      <div class="sov-box">
+      <div class="sov-box" data-box-title="Infrastructure Locale" id="sov-box-title">
         <div class="sov-server">
           <div class="sov-server-item">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-            <div class="sov-server-label"><strong>Serveur IA dédié</strong>Modèles Mistral / Llama — on-premise</div>
+            <div class="sov-server-label" data-i18n="sov_diag_1"><strong>Serveur IA dédié</strong>Modèles Mistral / Llama — on-premise</div>
           </div>
           <div class="sov-server-item">
             <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            <div class="sov-server-label"><strong>Vos documents & données</strong>Factures, contrats, IFC, emails</div>
+            <div class="sov-server-label" data-i18n="sov_diag_2"><strong>Vos documents & données</strong>Factures, contrats, IFC, emails</div>
           </div>
           <div class="sov-server-item">
             <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <div class="sov-server-label"><strong>Résultats structurés</strong>Excel, PDF, JSON, Word — livrés à vos équipes</div>
+            <div class="sov-server-label" data-i18n="sov_diag_3"><strong>Résultats structurés</strong>Excel, PDF, JSON, Word — livrés à vos équipes</div>
           </div>
         </div>
         <div class="sov-lock">
           <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <div class="sov-lock-text">Données jamais transmises à l'extérieur</div>
+          <div class="sov-lock-text" data-i18n="sov_diag_lock">Données jamais transmises à l'extérieur</div>
         </div>
       </div>
     </div>
@@ -494,24 +536,24 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <!-- SECTEURS -->
 <section id="sectors">
   <div class="sectors-header reveal">
-    <p class="section-label">Secteurs d'intervention</p>
-    <h2 class="section-title">Nous intervenons dans <em>votre secteur</em></h2>
+    <p class="section-label" data-i18n="sec_label">Secteurs d'intervention</p>
+    <h2 class="section-title" data-i18n="sec_title">Nous intervenons dans <em>votre secteur</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">Une expertise particulière dans le BIM et la construction, combinée à une offre transversale pour toutes les PME.</p>
+    <p class="section-sub" data-i18n="sec_sub">Une expertise particulière dans le BIM et la construction, combinée à une offre transversale pour toutes les PME.</p>
   </div>
   <div class="sectors-flex reveal" style="transition-delay:.2s">
-    <div class="sector-pill featured">BIM & Coordination de projet</div>
-    <div class="sector-pill featured">Bureaux d'études & Ingénierie</div>
-    <div class="sector-pill featured">Promotion immobilière</div>
-    <div class="sector-pill featured">Entreprises générales BTP</div>
-    <div class="sector-pill">Cabinets d'architecture</div>
-    <div class="sector-pill">PME de services</div>
-    <div class="sector-pill">Cabinets comptables</div>
-    <div class="sector-pill">Cabinets juridiques</div>
-    <div class="sector-pill">Sociétés de négoce</div>
-    <div class="sector-pill">Commerce & Distribution</div>
-    <div class="sector-pill">Industries & Fabrication</div>
-    <div class="sector-pill">Ressources humaines</div>
+    <div class="sector-pill featured" data-i18n="sec_pill_1">BIM & Coordination de projet</div>
+    <div class="sector-pill featured" data-i18n="sec_pill_2">Bureaux d'études & Ingénierie</div>
+    <div class="sector-pill featured" data-i18n="sec_pill_3">Promotion immobilière</div>
+    <div class="sector-pill featured" data-i18n="sec_pill_4">Entreprises générales BTP</div>
+    <div class="sector-pill" data-i18n="sec_pill_5">Cabinets d'architecture</div>
+    <div class="sector-pill" data-i18n="sec_pill_6">PME de services</div>
+    <div class="sector-pill" data-i18n="sec_pill_7">Cabinets comptables</div>
+    <div class="sector-pill" data-i18n="sec_pill_8">Cabinets juridiques</div>
+    <div class="sector-pill" data-i18n="sec_pill_9">Sociétés de négoce</div>
+    <div class="sector-pill" data-i18n="sec_pill_10">Commerce & Distribution</div>
+    <div class="sector-pill" data-i18n="sec_pill_11">Industries & Fabrication</div>
+    <div class="sector-pill" data-i18n="sec_pill_12">Ressources humaines</div>
   </div>
 </section>
 
@@ -519,42 +561,42 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <section id="process" style="background:var(--white)">
   <div class="process-inner">
     <div class="process-header reveal">
-      <p class="section-label">Notre méthode</p>
-      <h2 class="section-title">Un résultat concret en <em>moins d'une semaine</em></h2>
+      <p class="section-label" data-i18n="pro_label">Notre méthode</p>
+      <h2 class="section-title" data-i18n="pro_title">Un résultat concret en <em>moins d'une semaine</em></h2>
       <div class="divider"></div>
-      <p class="section-sub">Pas de grand projet. Pas de consultant qui repart avec un rapport. Nous livrons une automatisation opérationnelle, rapidement.</p>
+      <p class="section-sub" data-i18n="pro_sub">Pas de grand projet. Pas de consultant qui repart avec un rapport. Nous livrons une automatisation opérationnelle, rapidement.</p>
     </div>
     <div class="steps">
       <div class="step" id="s1">
         <div class="step-num"><span class="step-num-text">01</span></div>
         <div class="step-body">
-          <h3 class="step-title">Audit découverte — 30 minutes</h3>
-          <p class="step-text">Un appel pour identifier la tâche qui vous coûte le plus de temps. Nous calculons ensemble le gain potentiel en heures et en euros. Gratuit, sans engagement, avec une démonstration live sur l'un de vos documents.</p>
-          <span class="step-time">Gratuit · 30 min</span>
+          <h3 class="step-title" data-i18n="pro_1_title">Audit découverte — 30 minutes</h3>
+          <p class="step-text" data-i18n="pro_1_text">Un appel pour identifier la tâche qui vous coûte le plus de temps. Nous calculons ensemble le gain potentiel en heures et en euros. Gratuit, sans engagement.</p>
+          <span class="step-time" data-i18n="pro_1_time">Gratuit · 30 min</span>
         </div>
       </div>
       <div class="step" id="s2">
         <div class="step-num"><span class="step-num-text">02</span></div>
         <div class="step-body">
-          <h3 class="step-title">Démonstration sur vos données réelles</h3>
-          <p class="step-text">Vous nous transmettez un document réel (facture, CCTP, CV, audio de réunion). Nous vous livrons un résultat traité par notre IA dans les 48 heures. Vous voyez exactement ce que vous allez obtenir, avant de vous engager.</p>
-          <span class="step-time">Sous 48h</span>
+          <h3 class="step-title" data-i18n="pro_2_title">Démonstration sur vos données</h3>
+          <p class="step-text" data-i18n="pro_2_text">Vous nous transmettez un document réel. Nous vous livrons un résultat traité par notre IA dans les 48 heures. Vous voyez exactement ce que vous allez obtenir.</p>
+          <span class="step-time" data-i18n="pro_2_time">Sous 48h</span>
         </div>
       </div>
       <div class="step" id="s3">
         <div class="step-num"><span class="step-num-text">03</span></div>
         <div class="step-body">
-          <h3 class="step-title">Déploiement & intégration</h3>
-          <p class="step-text">Nous configurons et déployons l'automatisation dans votre environnement de travail (SharePoint, email, ERP, Excel…). Formation de vos équipes incluse. Première version opérationnelle sous 5 jours ouvrés.</p>
-          <span class="step-time">5 jours ouvrés</span>
+          <h3 class="step-title" data-i18n="pro_3_title">Déploiement & intégration</h3>
+          <p class="step-text" data-i18n="pro_3_text">Nous configurons et déployons l'automatisation dans votre environnement de travail (SharePoint, ERP, Excel…). Formation de vos équipes incluse.</p>
+          <span class="step-time" data-i18n="pro_3_time">5 jours ouvrés</span>
         </div>
       </div>
       <div class="step" id="s4">
         <div class="step-num"><span class="step-num-text">04</span></div>
         <div class="step-body">
-          <h3 class="step-title">Suivi & optimisation continue</h3>
-          <p class="step-text">Nous assurons la maintenance, les mises à jour de modèles et l'optimisation. Vous nous signalez ce qui ne correspond pas à vos attentes, nous affinons. Votre IA s'améliore en continu sur vos propres données.</p>
-          <span class="step-time">Mensuel · sans engagement long terme</span>
+          <h3 class="step-title" data-i18n="pro_4_title">Suivi & optimisation continue</h3>
+          <p class="step-text" data-i18n="pro_4_text">Nous assurons la maintenance et l'optimisation. Votre IA s'améliore en continu sur vos propres données sans engagement contraignant.</p>
+          <span class="step-time" data-i18n="pro_4_time">Mensuel · sans engagement long terme</span>
         </div>
       </div>
     </div>
@@ -566,19 +608,19 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
   <div class="numbers-inner">
     <div class="number-item reveal">
       <div class="number-big">8<span class="number-unit">h</span></div>
-      <div class="number-label">gagnées par semaine<br>en moyenne client</div>
+      <div class="number-label" data-i18n="num_1">gagnées par semaine<br>en moyenne client</div>
     </div>
     <div class="number-item reveal" style="transition-delay:.1s">
       <div class="number-big">0<span class="number-unit">€</span></div>
-      <div class="number-label">de données vendues<br>ou partagées</div>
+      <div class="number-label" data-i18n="num_2">de données vendues<br>ou partagées</div>
     </div>
     <div class="number-item reveal" style="transition-delay:.2s">
       <div class="number-big">48<span class="number-unit">h</span></div>
-      <div class="number-label">pour livrer<br>un premier résultat</div>
+      <div class="number-label" data-i18n="num_3">pour livrer<br>un premier résultat</div>
     </div>
     <div class="number-item reveal" style="transition-delay:.3s">
       <div class="number-big">-40<span class="number-unit">%</span></div>
-      <div class="number-label">de tickets traités<br>manuellement</div>
+      <div class="number-label" data-i18n="num_4">de tickets traités<br>manuellement</div>
     </div>
   </div>
 </section>
@@ -587,8 +629,8 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <section id="testimonial">
   <div class="testimonial-inner reveal">
     <span class="quote-mark">&ldquo;</span>
-    <p class="quote-text">En tant que bureau d'études, nos maquettes et nos cahiers des charges sont des documents hautement confidentiels. Le fait de pouvoir utiliser une IA performante sans que nos données ne quittent notre réseau interne, c'est un argument qui a emporté la décision immédiatement.</p>
-    <p class="quote-author">Directeur technique, <span>bureau d'études structure</span></p>
+    <p class="quote-text" data-i18n="testi_text">En tant que bureau d'études, nos maquettes et nos cahiers des charges sont des documents hautement confidentiels. Le fait de pouvoir utiliser une IA performante sans que nos données ne quittent notre réseau interne, c'est un argument qui a emporté la décision immédiatement.</p>
+    <p class="quote-author" data-i18n="testi_author">Directeur technique, <span>bureau d'études structure</span></p>
   </div>
 </section>
 
@@ -596,61 +638,62 @@ footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200
 <section id="cta-final">
   <div class="cta-bg"></div>
   <div class="cta-inner reveal">
-    <p class="section-label" style="color:var(--gold)">Première étape</p>
-    <h2 class="cta-title">Voyez le résultat<br>sur <em>vos propres documents</em></h2>
-    <p class="cta-sub">Transmettez-nous votre email. Nous vous rappelons sous 24h pour un audit gratuit de 30 minutes — avec une démonstration live sur un document de votre choix.</p>
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input type="email" class="cta-input" placeholder="votre@email.fr" id="emailInput" required>
-      <button type="submit" class="cta-submit">Demander l'audit</button>
+    <p class="section-label" style="color:var(--gold)" data-i18n="cta_label">Première étape</p>
+    <h2 class="cta-title" data-i18n="cta_title">Voyez le résultat<br>sur <em>vos propres documents</em></h2>
+    <p class="cta-sub" data-i18n="cta_sub">Transmettez-nous votre email. Nous vous rappelons sous 24h pour un audit gratuit de 30 minutes — avec une démonstration live sur un document de votre choix.</p>
+    
+    <!-- Remplacer "VOTRE_LIEN_FORMSPREE" par le lien fourni par formspree.io -->
+    <form class="cta-form" action="VOTRE_LIEN_FORMSPREE" method="POST">
+      <input type="text" name="entreprise" class="cta-input" placeholder="Nom de l'entreprise" id="companyInput" data-i18n-placeholder="placeholder_company" required>
+      <input type="email" name="email" class="cta-input" placeholder="votre@email.fr" id="emailInput" required>
+      <button type="submit" class="cta-submit" data-i18n="cta_btn">Demander l'audit</button>
     </form>
-    <p class="cta-reassure">Aucun engagement · Réponse sous 24h · 100 % confidentiel</p>
+    
+    <p class="cta-reassure" data-i18n="cta_reassure">Aucun engagement · Réponse sous 24h · 100 % confidentiel</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">Kairos<span>.</span></div>
+    <div class="footer-logo">Axe Studio<span>.</span></div>
     <ul class="footer-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#sovereignty">Souveraineté</a></li>
-      <li><a href="#sectors">Secteurs</a></li>
-      <li><a href="#cta-final">Contact</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#sovereignty" data-i18n="nav_sovereignty">Souveraineté</a></li>
+      <li><a href="#sectors" data-i18n="nav_sectors">Secteurs</a></li>
+      <li><a href="#cta-final" data-i18n="foot_contact">Contact</a></li>
     </ul>
-    <p class="footer-copy">© 2025 Kairos Intelligence — IA locale souveraine</p>
+    <p class="footer-copy" data-i18n="foot_copy">© 2026 Axe Studio — IA locale souveraine</p>
   </div>
 </footer>
 
 <script>
-// Nav scroll
+// --- Nav scroll ---
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Scroll reveal
+// --- Menu Mobile ---
+const mobileToggle = document.querySelector('.mobile-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (mobileToggle) {
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  // Fermer le menu au clic sur un lien
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('active'));
+  });
+}
+
+// --- Scroll reveal ---
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
 
-// CTA form
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button');
-  const input = document.getElementById('emailInput');
-  btn.textContent = 'Envoyé ✓';
-  btn.style.background = '#4caf83';
-  btn.style.borderColor = '#4caf83';
-  input.value = '';
-  setTimeout(() => {
-    btn.textContent = 'Demander l\'audit';
-    btn.style.background = '';
-    btn.style.borderColor = '';
-  }, 3000);
-}
-
-// Smooth step reveal with stagger
+// --- Smooth step reveal with stagger ---
 const steps = document.querySelectorAll('.step');
 const stepObs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
@@ -661,6 +704,381 @@ const stepObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 steps.forEach(s => stepObs.observe(s));
+
+// --- SYSTÈME MULTILINGUE (i18n) ---
+const translations = {
+  fr: {
+    nav_services: "Services",
+    nav_sovereignty: "Souveraineté",
+    nav_sectors: "Secteurs",
+    nav_process: "Méthode",
+    nav_cta: "Audit gratuit",
+    placeholder_company: "Nom de l'entreprise",
+    cookie_badge: "Zéro cookie traceur. 100% Confidentiel.",
+    hero_badge: "IA locale · données souveraines",
+    hero_title: "Récupérez vos heures.<br><em>Gardez vos données.</em>",
+    hero_sub: "Nous automatisons les tâches répétitives de votre entreprise avec une <strong>IA qui tourne entièrement chez vous</strong> — sans cloud, sans abonnement tiers, sans transmission de données confidentielles.",
+    hero_btn_1: "Demander un audit gratuit",
+    hero_btn_2: "Voir nos services",
+    metric_1: "gagnées / semaine<br>en moyenne",
+    metric_2: "pour voir<br>un premier résultat",
+    metric_3: "donnée envoyée<br>à un cloud tiers",
+    prob_label: "Le constat",
+    prob_title: "Vos équipes passent trop de temps sur des tâches qui <em>ne créent pas de valeur</em>",
+    prob_sub_1: "Saisie de factures, relances impayées, tri de documents, comptes-rendus, vérification de conformité… Ces tâches sont nécessaires, mais elles mobilisent des ressources précieuses.",
+    prob_sub_2: "Et quand vous cherchez des solutions SaaS, vous vous heurtez à un autre problème : vos données partent dans des serveurs que vous ne contrôlez pas.",
+    prob_card_title: "Ce que l'on entend le plus souvent",
+    prob_quote_1: "<strong>« Je passe 4h par semaine à saisir des factures »</strong> — et encore plus à corriger les erreurs.",
+    prob_quote_2: "<strong>« On reçoit des centaines de documents par projet »</strong> — retrouver la bonne version prend une éternité.",
+    prob_quote_3: "<strong>« On ne peut pas utiliser ChatGPT »</strong> — nos données clients et contrats sont confidentiels.",
+    prob_quote_4: "<strong>« Les réunions de chantier prennent 2h à rédiger »</strong> — et souvent personne ne relit le CR.",
+    prob_float_text: "perdus / an<br>en tâches admin",
+    app_label: "Notre philosophie",
+    app_title: "Une IA qui travaille <em>pour vous</em>,<br>pas contre votre confidentialité",
+    app_sub: "Trois principes fondateurs qui guident chacune de nos interventions.",
+    app_p1_title: "Souveraineté totale",
+    app_p1_text: "Nos modèles d'IA s'exécutent exclusivement sur une infrastructure locale. Vos données ne quittent jamais votre environnement. Zéro transmission vers un cloud étranger.",
+    app_p2_title: "Résultats en 48h",
+    app_p2_text: "Nous ne faisons pas de projets sur 18 mois. Nous automatisons votre tâche la plus chronophage en moins de 48 heures. Vous voyez le résultat immédiatement.",
+    app_p3_title: "Expertise métier",
+    app_p3_text: "Nous maîtrisons l'intelligence artificielle et les métiers de la construction et de la gestion. Nous comprenons vos contraintes réglementaires.",
+    svc_label: "Nos services",
+    svc_title: "Ce que nous automatisons <em>pour vous</em>",
+    svc_sub: "Chaque service est déployé en quelques jours, sur votre infrastructure ou la nôtre.",
+    svc_1_title: "Comptabilité & Facturation",
+    svc_1_text: "Lecture automatique des factures, extraction des montants, pré-saisie logicielle. Relances intelligentes et reporting financier.",
+    svc_tag_reminders: "Relances auto",
+    svc_2_title: "Gestion documentaire BIM",
+    svc_2_text: "Classification automatique de vos fichiers IFC et plans PDF. Recherche sémantique en langage naturel et détection de doublons.",
+    svc_tag_search: "Recherche sémantique",
+    svc_3_title: "Service client & Emails",
+    svc_3_text: "Assistant IA 24h/24 pour qualifier les demandes et prendre des rendez-vous. Tri et rédaction automatique des emails entrants.",
+    svc_tag_email: "Email auto",
+    svc_4_title: "Ressources Humaines",
+    svc_4_text: "Scoring automatique des candidatures. Assistant RH interne pour les questions courantes (congés, paie). Rédaction d'offres d'emploi.",
+    svc_tag_cv: "Tri CV",
+    svc_tag_hr: "Assistant RH",
+    svc_tag_writing: "Rédaction",
+    svc_5_title: "Analyse de documents",
+    svc_5_text: "Extraction structurée depuis des cahiers des charges (CCTP) ou contrats. Identification des exigences clés et des risques en 15 min.",
+    svc_tag_risk: "Risques",
+    svc_6_title: "Comptes-rendus & Réunions",
+    svc_6_text: "Transcription de vos réunions audio. Génération d'un compte-rendu structuré avec décisions et actions, envoyé automatiquement.",
+    svc_tag_summary: "Résumé IA",
+    sov_label: "Confidentialité absolue",
+    sov_title: "Vos données ne quittent <em>jamais</em> votre contrôle",
+    sov_sub: "C'est notre engagement. Dans un monde où vos requêtes alimentent des serveurs américains, nous avons fait un choix radical.",
+    sov_p1: "<strong>Infrastructure 100 % locale.</strong> Nos modèles d'IA s'exécutent sur une machine dédiée. Aucune dépendance cloud.",
+    sov_p2: "<strong>RGPD par conception.</strong> Vos factures, contrats, et maquettes restent dans votre périmètre juridique.",
+    sov_p3: "<strong>Pas de dépendance.</strong> Nous utilisons des modèles open-source. Vous n'êtes pas tributaire d'un abonnement externe.",
+    sov_p4: "<strong>Disponible hors connexion.</strong> Votre IA fonctionne même sans internet. Idéal pour les chantiers et zones sécurisées.",
+    sov_diag_1: "<strong>Serveur IA dédié</strong>Modèles Mistral / Llama — on-premise",
+    sov_diag_2: "<strong>Vos documents & données</strong>Factures, contrats, IFC, emails",
+    sov_diag_3: "<strong>Résultats structurés</strong>Excel, PDF, JSON, Word",
+    sov_diag_lock: "Données jamais transmises à l'extérieur",
+    sec_label: "Secteurs d'intervention",
+    sec_title: "Nous intervenons dans <em>votre secteur</em>",
+    sec_sub: "Une expertise dans le BIM, combinée à une offre transversale pour toutes les PME.",
+    sec_pill_1: "BIM & Coordination",
+    sec_pill_2: "Bureaux d'études & Ingénierie",
+    sec_pill_3: "Promotion immobilière",
+    sec_pill_4: "Entreprises générales BTP",
+    sec_pill_5: "Cabinets d'architecture",
+    sec_pill_6: "PME de services",
+    sec_pill_7: "Cabinets comptables",
+    sec_pill_8: "Cabinets juridiques",
+    sec_pill_9: "Sociétés de négoce",
+    sec_pill_10: "Commerce & Distribution",
+    sec_pill_11: "Industries & Fabrication",
+    sec_pill_12: "Ressources humaines",
+    pro_label: "Notre méthode",
+    pro_title: "Un résultat concret en <em>moins d'une semaine</em>",
+    pro_sub: "Pas de consultant qui repart avec un rapport. Nous livrons une automatisation opérationnelle.",
+    pro_1_title: "Audit découverte — 30 minutes",
+    pro_1_text: "Identification de la tâche qui vous coûte le plus de temps. Calcul du gain potentiel en heures et euros. Gratuit, sans engagement.",
+    pro_1_time: "Gratuit · 30 min",
+    pro_2_title: "Démonstration sur vos données",
+    pro_2_text: "Vous nous transmettez un document réel. Nous vous livrons un résultat traité par notre IA dans les 48h.",
+    pro_2_time: "Sous 48h",
+    pro_3_title: "Déploiement & intégration",
+    pro_3_text: "Configuration et déploiement dans votre environnement (ERP, Excel…). Formation de vos équipes incluse.",
+    pro_3_time: "5 jours ouvrés",
+    pro_4_title: "Suivi & optimisation",
+    pro_4_text: "Maintenance et optimisation. Votre IA s'améliore en continu sur vos propres données sans engagement contraignant.",
+    pro_4_time: "Mensuel · Sans engagement",
+    num_1: "gagnées par semaine<br>en moyenne client",
+    num_2: "de données vendues<br>ou partagées",
+    num_3: "pour livrer<br>un premier résultat",
+    num_4: "de tickets traités<br>manuellement",
+    testi_text: "En tant que bureau d'études, nos maquettes sont des documents hautement confidentiels. Pouvoir utiliser une IA sans que nos données ne quittent notre réseau interne est l'argument qui a emporté la décision.",
+    testi_author: "Directeur technique, <span>bureau d'études structure</span>",
+    cta_label: "Première étape",
+    cta_title: "Voyez le résultat<br>sur <em>vos propres documents</em>",
+    cta_sub: "Laissez votre email. Nous vous rappelons sous 24h pour un audit gratuit avec démo live.",
+    cta_btn: "Demander l'audit",
+    cta_reassure: "Aucun engagement · Réponse sous 24h · 100 % confidentiel",
+    foot_contact: "Contact",
+    foot_copy: "© 2026 Axe Studio — IA locale souveraine"
+  },
+  en: {
+    nav_services: "Services",
+    nav_sovereignty: "Sovereignty",
+    nav_sectors: "Industries",
+    nav_process: "Methodology",
+    nav_cta: "Free Audit",
+    placeholder_company: "Company Name",
+    cookie_badge: "Zero tracking cookies. 100% private.",
+    hero_badge: "Local AI · Sovereign Data",
+    hero_title: "Reclaim your hours.<br><em>Keep your data.</em>",
+    hero_sub: "We automate your repetitive business tasks with an <strong>AI running entirely on-premises</strong> — no cloud, no third-party subscriptions, no confidential data leaks.",
+    hero_btn_1: "Request a free audit",
+    hero_btn_2: "View our services",
+    metric_1: "saved / week<br>on average",
+    metric_2: "to see<br>the first result",
+    metric_3: "data sent<br>to a third-party cloud",
+    prob_label: "The Observation",
+    prob_title: "Your teams spend too much time on tasks that <em>don't create value</em>",
+    prob_sub_1: "Invoice entry, payment reminders, document sorting, meeting minutes... These tasks are necessary but tie up precious resources.",
+    prob_sub_2: "And when you look for SaaS solutions, you hit another wall: your confidential data is sent to servers you don't control.",
+    prob_card_title: "What we hear most often",
+    prob_quote_1: "<strong>\"I spend 4h a week entering invoices\"</strong> — and even more correcting typos.",
+    prob_quote_2: "<strong>\"We receive hundreds of documents per project\"</strong> — finding the right version takes forever.",
+    prob_quote_3: "<strong>\"We can't use ChatGPT\"</strong> — our client data and contracts are strictly confidential.",
+    prob_quote_4: "<strong>\"Site meetings take 2h to write up\"</strong> — and often no one rereads the minutes.",
+    prob_float_text: "lost / year<br>in admin tasks",
+    app_label: "Our Philosophy",
+    app_title: "An AI that works <em>for you</em>,<br>not against your privacy",
+    app_sub: "Three founding principles that guide everything we do.",
+    app_p1_title: "Total Sovereignty",
+    app_p1_text: "Our AI models run exclusively on dedicated local infrastructure. Your invoices, contracts, and blueprints never leave your environment.",
+    app_p2_title: "Results in 48h",
+    app_p2_text: "We don't do 18-month transformation projects. We automate your most time-consuming task in under 48 hours. You see immediate results.",
+    app_p3_title: "Industry Expertise",
+    app_p3_text: "We master both AI and the construction/management industries. We speak your language and understand your regulatory constraints.",
+    svc_label: "Our Services",
+    svc_title: "What we automate <em>for you</em>",
+    svc_sub: "Each service is deployed in a few days, on your infrastructure or ours.",
+    svc_1_title: "Accounting & Invoicing",
+    svc_1_text: "Automatic reading of supplier invoices, amount extraction, and software pre-entry. Smart reminders and financial reporting.",
+    svc_tag_reminders: "Auto Reminders",
+    svc_2_title: "BIM Document Management",
+    svc_2_text: "Automatic classification of IFC files and PDF blueprints. Natural language semantic search and duplicate detection.",
+    svc_tag_search: "Semantic Search",
+    svc_3_title: "Customer Service & Emails",
+    svc_3_text: "24/7 AI assistant to qualify requests and schedule meetings. Automatic sorting and drafting of incoming emails.",
+    svc_tag_email: "Auto Email",
+    svc_4_title: "Human Resources",
+    svc_4_text: "Automatic resume scoring. Internal HR assistant for common questions (leave, payroll). Drafting optimized job offers.",
+    svc_tag_cv: "CV Sorting",
+    svc_tag_hr: "HR Assistant",
+    svc_tag_writing: "Copywriting",
+    svc_5_title: "Document Analysis",
+    svc_5_text: "Structured extraction from bulky technical specifications or contracts. Key requirements and risks identified in 15 mins.",
+    svc_tag_risk: "Risk Analysis",
+    svc_6_title: "Minutes & Meetings",
+    svc_6_text: "Transcription of your audio/video meetings. Generation of structured minutes with decisions and actions, sent automatically.",
+    svc_tag_summary: "AI Summary",
+    sov_label: "Absolute Confidentiality",
+    sov_title: "Your data <em>never</em> leaves your control",
+    sov_sub: "That's our commitment. In a world where your queries feed US servers, we made a radical choice.",
+    sov_p1: "<strong>100% Local Infrastructure.</strong> Our AI runs on a dedicated machine. No cloud dependency.",
+    sov_p2: "<strong>GDPR by Design.</strong> Your invoices, contracts, and models stay within your legal perimeter.",
+    sov_p3: "<strong>No Vendor Lock-in.</strong> We use open-source models. You are not tied to an external subscription.",
+    sov_p4: "<strong>Available Offline.</strong> Your AI works even without internet. Ideal for construction sites.",
+    sov_diag_1: "<strong>Dedicated AI Server</strong>Mistral / Llama models — on-premise",
+    sov_diag_2: "<strong>Your Documents</strong>Invoices, contracts, IFC, emails",
+    sov_diag_3: "<strong>Structured Results</strong>Excel, PDF, JSON, Word",
+    sov_diag_lock: "Data never transmitted externally",
+    sec_label: "Industries",
+    sec_title: "We operate in <em>your industry</em>",
+    sec_sub: "Deep expertise in BIM, combined with a cross-functional offering for all SMBs.",
+    sec_pill_1: "BIM & Coordination",
+    sec_pill_2: "Engineering Firms",
+    sec_pill_3: "Real Estate Development",
+    sec_pill_4: "General Contractors",
+    sec_pill_5: "Architecture Firms",
+    sec_pill_6: "Service SMBs",
+    sec_pill_7: "Accounting Firms",
+    sec_pill_8: "Law Firms",
+    sec_pill_9: "Trading Companies",
+    sec_pill_10: "Retail & Distribution",
+    sec_pill_11: "Manufacturing",
+    sec_pill_12: "Human Resources",
+    pro_label: "Our Methodology",
+    pro_title: "Concrete results in <em>under a week</em>",
+    pro_sub: "No consultant leaving with just a report. We deliver operational automation.",
+    pro_1_title: "Discovery Audit — 30 mins",
+    pro_1_text: "Identify your most time-consuming task. Calculate potential savings in hours and euros. Free, no commitment.",
+    pro_1_time: "Free · 30 min",
+    pro_2_title: "Demo on your data",
+    pro_2_text: "Send us a real document. We deliver AI-processed results within 48h. See exactly what you'll get.",
+    pro_2_time: "Under 48h",
+    pro_3_title: "Deployment & Integration",
+    pro_3_text: "Configuration and deployment in your environment (ERP, Excel…). Team training included.",
+    pro_3_time: "5 business days",
+    pro_4_title: "Monitoring & Optimization",
+    pro_4_text: "Maintenance and optimization. Your AI continuously improves on your data with no long-term tie-in.",
+    pro_4_time: "Monthly · No commitment",
+    num_1: "saved per week<br>on average",
+    num_2: "data sold<br>or shared",
+    num_3: "to deliver<br>a first result",
+    num_4: "tickets processed<br>manually",
+    testi_text: "As an engineering firm, our blueprints are highly confidential. Being able to use powerful AI without our data leaving our internal network was the deciding factor.",
+    testi_author: "Technical Director, <span>Structural Engineering Firm</span>",
+    cta_label: "First Step",
+    cta_title: "See the result<br>on <em>your own documents</em>",
+    cta_sub: "Leave your email. We'll call back within 24h for a free audit with a live demo.",
+    cta_btn: "Request audit",
+    cta_reassure: "No commitment · 24h response · 100% confidential",
+    foot_contact: "Contact",
+    foot_copy: "© 2026 Axe Studio — Sovereign Local AI"
+  },
+  es: {
+    nav_services: "Servicios",
+    nav_sovereignty: "Soberanía",
+    nav_sectors: "Sectores",
+    nav_process: "Método",
+    nav_cta: "Auditoría gratis",
+    placeholder_company: "Nombre de la empresa",
+    cookie_badge: "Cero cookies de rastreo. 100% privado.",
+    hero_badge: "IA local · datos soberanos",
+    hero_title: "Recupere sus horas.<br><em>Conserve sus datos.</em>",
+    hero_sub: "Automatizamos las tareas repetitivas de su empresa con una <strong>IA que se ejecuta 100% en sus instalaciones</strong> — sin nube, sin suscripciones de terceros, sin fugas.",
+    hero_btn_1: "Solicitar auditoría gratuita",
+    hero_btn_2: "Ver nuestros servicios",
+    metric_1: "ahorradas / semana<br>en promedio",
+    metric_2: "para ver<br>el primer resultado",
+    metric_3: "datos enviados<br>a la nube externa",
+    prob_label: "La Observación",
+    prob_title: "Sus equipos pierden demasiado tiempo en tareas que <em>no crean valor</em>",
+    prob_sub_1: "Ingreso de facturas, recordatorios de pago, clasificación de documentos... Son tareas necesarias pero bloquean recursos valiosos.",
+    prob_sub_2: "Y cuando busca soluciones SaaS, se topa con otro problema: sus datos confidenciales van a servidores que no controla.",
+    prob_card_title: "Lo que más escuchamos",
+    prob_quote_1: "<strong>«Paso 4h a la semana ingresando facturas»</strong> — y aún más corrigiendo errores.",
+    prob_quote_2: "<strong>«Recibimos cientos de documentos por proyecto»</strong> — encontrar la versión correcta es una eternidad.",
+    prob_quote_3: "<strong>«No podemos usar ChatGPT»</strong> — nuestros contratos son estrictamente confidenciales.",
+    prob_quote_4: "<strong>«Redactar actas de obra toma 2 horas»</strong> — y muchas veces nadie las lee.",
+    prob_float_text: "perdidos / año<br>en administración",
+    app_label: "Nuestra Filosofía",
+    app_title: "Una IA que trabaja <em>para usted</em>,<br>no contra su privacidad",
+    app_sub: "Tres principios fundacionales que guían todo lo que hacemos.",
+    app_p1_title: "Soberanía Total",
+    app_p1_text: "Nuestros modelos de IA se ejecutan exclusivamente en infraestructura local dedicada. Sus datos nunca salen de su entorno.",
+    app_p2_title: "Resultados en 48h",
+    app_p2_text: "No hacemos proyectos de transformación de 18 meses. Automatizamos su tarea más lenta en menos de 48 horas.",
+    app_p3_title: "Experiencia en la Industria",
+    app_p3_text: "Dominamos tanto la IA como la gestión/construcción. Hablamos su idioma y entendemos sus limitaciones legales.",
+    svc_label: "Nuestros Servicios",
+    svc_title: "Lo que automatizamos <em>para usted</em>",
+    svc_sub: "Cada servicio se despliega en unos días, en su infraestructura o en la nuestra.",
+    svc_1_title: "Contabilidad y Facturación",
+    svc_1_text: "Lectura automática de facturas, extracción de montos e ingreso en software. Recordatorios inteligentes.",
+    svc_tag_reminders: "Recordatorios",
+    svc_2_title: "Gestión Documental BIM",
+    svc_2_text: "Clasificación de archivos IFC y planos PDF. Búsqueda semántica en lenguaje natural y detección de duplicados.",
+    svc_tag_search: "Búsqueda Semántica",
+    svc_3_title: "Servicio al Cliente",
+    svc_3_text: "Asistente de IA 24/7 para calificar solicitudes y concertar citas. Clasificación y redacción de correos.",
+    svc_tag_email: "Email Automático",
+    svc_4_title: "Recursos Humanos",
+    svc_4_text: "Puntuación automática de CVs. Asistente interno de RRHH para preguntas comunes. Redacción de ofertas de empleo.",
+    svc_tag_cv: "Filtro de CV",
+    svc_tag_hr: "Asistente RRHH",
+    svc_tag_writing: "Redacción",
+    svc_5_title: "Análisis de Documentos",
+    svc_5_text: "Extracción estructurada de pliegos de condiciones o contratos largos. Requisitos y riesgos identificados en 15 min.",
+    svc_tag_risk: "Riesgos",
+    svc_6_title: "Actas y Reuniones",
+    svc_6_text: "Transcripción de sus reuniones. Generación de un acta estructurada con decisiones y acciones, enviada automáticamente.",
+    svc_tag_summary: "Resumen IA",
+    sov_label: "Confidencialidad Absoluta",
+    sov_title: "Sus datos <em>nunca</em> escapan de su control",
+    sov_sub: "Es nuestro compromiso. En un mundo donde sus consultas alimentan servidores de EE. UU., tomamos una decisión radical.",
+    sov_p1: "<strong>Infraestructura 100% Local.</strong> Nuestra IA se ejecuta en una máquina dedicada. Cero dependencia de la nube.",
+    sov_p2: "<strong>RGPD desde el Diseño.</strong> Sus facturas y contratos permanecen dentro de su perímetro legal.",
+    sov_p3: "<strong>Sin Dependencia.</strong> Usamos modelos de código abierto. No depende de suscripciones externas.",
+    sov_p4: "<strong>Disponible sin Conexión.</strong> Su IA funciona sin internet. Ideal para obras en construcción.",
+    sov_diag_1: "<strong>Servidor IA Dedicado</strong>Modelos Mistral / Llama — on-premise",
+    sov_diag_2: "<strong>Sus Documentos</strong>Facturas, contratos, IFC, emails",
+    sov_diag_3: "<strong>Resultados Estructurados</strong>Excel, PDF, JSON, Word",
+    sov_diag_lock: "Datos nunca transmitidos al exterior",
+    sec_label: "Sectores",
+    sec_title: "Operamos en <em>su sector</em>",
+    sec_sub: "Amplia experiencia en BIM, combinada con una oferta transversal para todas las PYMES.",
+    sec_pill_1: "BIM y Coordinación",
+    sec_pill_2: "Ingeniería y Diseño",
+    sec_pill_3: "Desarrollo Inmobiliario",
+    sec_pill_4: "Contratistas Generales",
+    sec_pill_5: "Estudios de Arquitectura",
+    sec_pill_6: "PYMES de Servicios",
+    sec_pill_7: "Despachos Contables",
+    sec_pill_8: "Bufetes de Abogados",
+    sec_pill_9: "Empresas Comerciales",
+    sec_pill_10: "Comercio y Distribución",
+    sec_pill_11: "Fabricación Industrial",
+    sec_pill_12: "Recursos Humanos",
+    pro_label: "Nuestra Metodología",
+    pro_title: "Resultados concretos en <em>menos de una semana</em>",
+    pro_sub: "Ningún consultor se va con solo un informe. Entregamos automatización operativa.",
+    pro_1_title: "Auditoría de Descubrimiento — 30 min",
+    pro_1_text: "Identifique su tarea que consume más tiempo. Calculamos el ahorro en horas y euros. Gratis, sin compromiso.",
+    pro_1_time: "Gratis · 30 min",
+    pro_2_title: "Demo en sus datos",
+    pro_2_text: "Envíenos un documento real. Le entregamos resultados procesados por IA en 48h. Vea exactamente qué obtendrá.",
+    pro_2_time: "Menos de 48h",
+    pro_3_title: "Despliegue e Integración",
+    pro_3_text: "Configuración y despliegue en su entorno (ERP, Excel…). Formación del equipo incluida.",
+    pro_3_time: "5 días hábiles",
+    pro_4_title: "Mantenimiento y Optimización",
+    pro_4_text: "Su IA mejora continuamente con sus propios datos sin ningún compromiso a largo plazo.",
+    pro_4_time: "Mensual · Sin compromiso",
+    num_1: "ahorradas por semana<br>en promedio",
+    num_2: "de datos vendidos<br>o compartidos",
+    num_3: "para entregar<br>el primer resultado",
+    num_4: "de tickets procesados<br>manualmente",
+    testi_text: "Como estudio de ingeniería, nuestros planos son altamente confidenciales. Poder usar una IA sin que los datos salgan de nuestra red fue el argumento definitivo.",
+    testi_author: "Director Técnico, <span>Ingeniería Estructural</span>",
+    cta_label: "Primer Paso",
+    cta_title: "Vea el resultado<br>en <em>sus propios documentos</em>",
+    cta_sub: "Deje su email. Le llamaremos en 24h para una auditoría gratuita con demo en vivo.",
+    cta_btn: "Solicitar auditoría",
+    cta_reassure: "Sin compromiso · Respuesta en 24h · 100% confidencial",
+    foot_contact: "Contacto",
+    foot_copy: "© 2026 Axe Studio — IA Local Soberana"
+  }
+};
+
+// --- LOGIQUE DE TRADUCTION ---
+const langSwitch = document.getElementById('lang-switch');
+
+langSwitch.addEventListener('change', (e) => {
+  const lang = e.target.value;
+  document.documentElement.lang = lang; 
+  
+  // Update translation for all specific elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+
+  // Update placeholders (New logic for the form)
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.setAttribute('placeholder', translations[lang][key]);
+    }
+  });
+
+  // Update specific "data-" attributes if necessary (like the before pseudo-element text)
+  const sovBox = document.getElementById('sov-box-title');
+  if(sovBox) {
+    if(lang === 'fr') sovBox.setAttribute('data-box-title', 'Infrastructure Locale');
+    if(lang === 'en') sovBox.setAttribute('data-box-title', 'Local Infrastructure');
+    if(lang === 'es') sovBox.setAttribute('data-box-title', 'Infraestructura Local');
+  }
+});
 </script>
 </body>
 </html>
