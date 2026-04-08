@@ -1,572 +1,666 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth scroll-pt-20">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SouveraineData | Traitement IA Local pour l'Ingénierie</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#050505',
-                        darker: '#0a0a0a',
-                        accent: '#3b82f6',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Intelligence — IA souveraine pour PME & BIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1929;
+  --navy-mid:#112236;
+  --navy-light:#1A3554;
+  --gold:#C8A96E;
+  --gold-light:#E2C98F;
+  --gold-pale:#F5EDD8;
+  --cream:#F7F4EF;
+  --white:#FFFFFF;
+  --text-dark:#1A2332;
+  --text-mid:#3D5068;
+  --text-light:#7A8FA6;
+  --border:#D6CBBF;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;font-weight:300;background:var(--cream);color:var(--text-dark);overflow-x:hidden}
 
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5vw;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s}
+nav.scrolled{background:rgba(11,25,41,.96);box-shadow:0 1px 0 rgba(200,169,110,.2);backdrop-filter:blur(12px)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--white);letter-spacing:.04em;text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{font-size:.82rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.4rem;cursor:pointer;transition:all .25s;text-decoration:none}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ─── HERO ─── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--navy);overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,169,110,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(200,169,110,.06) 1px,transparent 1px);background-size:80px 80px;opacity:.5}
+.hero-glow{position:absolute;top:-20%;right:-5%;width:60%;height:80%;background:radial-gradient(ellipse at center,rgba(26,53,84,.9) 0%,transparent 70%);pointer-events:none}
+.hero-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-content{position:relative;padding:0 5vw;max-width:820px;animation:fadeUp .9s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(200,169,110,.4);color:var(--gold);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1rem .4rem .8rem;margin-bottom:2.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5.2rem);font-weight:300;line-height:1.08;color:var(--white);margin-bottom:1.6rem}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.62);line-height:1.75;max-width:560px;margin-bottom:3rem}
+.hero-sub strong{color:rgba(255,255,255,.9);font-weight:400}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center}
+.btn-primary{background:var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.85rem 2.2rem;border:none;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:300;letter-spacing:.06em;text-transform:uppercase;padding:.85rem 2.2rem;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{border-color:rgba(255,255,255,.7);color:var(--white)}
+.hero-metrics{position:absolute;right:5vw;bottom:8vh;display:flex;gap:3rem;animation:fadeUp 1.1s .3s ease both}
+.metric{text-align:center}
+.metric-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold);line-height:1}
+.metric-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.4rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
+/* ─── SECTION GLOBALS ─── */
+section{padding:8rem 5vw}
+.section-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;line-height:1.2;color:var(--text-dark)}
+.section-title em{font-style:italic;color:var(--navy-light)}
+.section-sub{font-size:1rem;font-weight:300;color:var(--text-mid);line-height:1.8;max-width:580px;margin-top:1.2rem}
+.divider{width:48px;height:1px;background:var(--gold);margin:2rem 0}
+
+/* ─── PROBLÈME ─── */
+#problem{background:var(--white)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;max-width:1200px;margin:0 auto}
+.problem-visual{position:relative}
+.prob-card{background:var(--navy);padding:2.5rem;position:relative;overflow:hidden}
+.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.prob-card-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--white);margin-bottom:1.5rem}
+.prob-item{display:flex;align-items:flex-start;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.prob-item:last-child{border-bottom:none}
+.prob-icon{width:32px;height:32px;border:1px solid rgba(200,169,110,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.prob-icon svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.prob-text{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.6}
+.prob-text strong{color:rgba(255,255,255,.9);font-weight:400}
+.prob-float{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--gold);padding:1.2rem 1.6rem;text-align:center}
+.prob-float-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--navy);line-height:1}
+.prob-float-text{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);opacity:.7;margin-top:.2rem}
+
+/* ─── APPROACH ─── */
+#approach{background:var(--navy);position:relative;overflow:hidden}
+#approach .bg-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(200,169,110,.03) 0,rgba(200,169,110,.03) 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.approach-inner{position:relative;max-width:1200px;margin:0 auto}
+.approach-header{text-align:center;margin-bottom:5rem}
+.approach-header .section-title{color:var(--white)}
+.approach-header .section-sub{color:rgba(255,255,255,.5);margin:1.2rem auto 0}
+.approach-header .divider{margin:2rem auto}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(200,169,110,.15)}
+.pillar{background:var(--navy-mid);padding:3rem 2.5rem;position:relative;transition:background .3s}
+.pillar:hover{background:var(--navy-light)}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(200,169,110,.12);line-height:1;margin-bottom:1.5rem}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:1rem}
+.pillar-text{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8}
+.pillar-accent{display:inline-block;width:24px;height:1px;background:var(--gold);margin-bottom:1.5rem}
+
+/* ─── SERVICES ─── */
+#services{background:var(--cream)}
+.services-header{max-width:600px;margin-bottom:4.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5px;background:var(--border);max-width:1200px}
+.service-card{background:var(--white);padding:2.5rem;cursor:default;transition:all .3s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.service-card:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 12px 40px rgba(11,25,41,.15)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-card:hover .svc-title{color:var(--white)}
+.service-card:hover .svc-text{color:rgba(255,255,255,.5)}
+.service-card:hover .svc-tag{border-color:rgba(200,169,110,.4);color:var(--gold)}
+.service-card:hover .svc-icon-wrap{border-color:rgba(200,169,110,.3);background:rgba(200,169,110,.08)}
+.service-card:hover .svc-icon-wrap svg{stroke:var(--gold)}
+.svc-icon-wrap{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:1.8rem;transition:all .3s}
+.svc-icon-wrap svg{width:20px;height:20px;stroke:var(--navy-light);fill:none;stroke-width:1.3;transition:stroke .3s}
+.svc-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--text-dark);margin-bottom:.8rem;transition:color .3s}
+.svc-text{font-size:.87rem;font-weight:300;color:var(--text-mid);line-height:1.75;transition:color .3s}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.svc-tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-light);padding:.3rem .8rem;transition:all .3s}
+
+/* ─── SOVEREIGNTY ─── */
+#sovereignty{background:var(--navy-mid);position:relative;overflow:hidden}
+.sov-accent-line{position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:60%;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+.sov-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}
+.sov-content .section-title{color:var(--white)}
+.sov-content .section-sub{color:rgba(255,255,255,.5)}
+.sov-content .divider{background:var(--gold)}
+.sov-points{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.2rem}
+.sov-point{display:flex;align-items:flex-start;gap:1.2rem}
+.sov-check{width:20px;height:20px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem}
+.sov-check svg{width:10px;height:10px;stroke:var(--gold);fill:none;stroke-width:2.5}
+.sov-point-text{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.65}
+.sov-point-text strong{color:rgba(255,255,255,.9);font-weight:400}
+.sov-diagram{position:relative}
+.sov-box{border:1px solid rgba(200,169,110,.25);padding:2rem 2.5rem;position:relative}
+.sov-box::before{content:'Infrastructure locale';position:absolute;top:-10px;left:1.5rem;background:var(--navy-mid);padding:0 .6rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.sov-server{display:flex;flex-direction:column;gap:.8rem}
+.sov-server-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem}
+.sov-server-item svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.3;flex-shrink:0}
+.sov-server-label{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.65)}
+.sov-server-label strong{color:var(--white);font-weight:400;display:block}
+.sov-lock{text-align:center;margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(200,169,110,.15)}
+.sov-lock-text{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:.5rem}
+.sov-lock svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.2}
+
+/* ─── PROCESS ─── */
+#process{background:var(--white)}
+.process-inner{max-width:900px;margin:0 auto}
+.process-header{text-align:center;margin-bottom:5rem}
+.process-header .divider{margin:2rem auto}
+.steps{position:relative}
+.steps::before{content:'';position:absolute;left:23px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),transparent)}
+.step{display:flex;gap:2.5rem;padding:2rem 0;opacity:0;transform:translateX(-20px);transition:all .6s ease}
+.step.visible{opacity:1;transform:translateX(0)}
+.step-num{width:48px;height:48px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--white);position:relative;z-index:1}
+.step-num-text{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--gold)}
+.step-body{padding-top:.5rem}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--text-dark);margin-bottom:.6rem}
+.step-text{font-size:.88rem;font-weight:300;color:var(--text-mid);line-height:1.75}
+.step-time{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,169,110,.3);padding:.25rem .8rem;margin-top:.8rem}
+
+/* ─── SECTEURS ─── */
+#sectors{background:var(--cream)}
+.sectors-header{margin-bottom:3.5rem}
+.sectors-flex{display:flex;gap:1.5rem;flex-wrap:wrap;max-width:1100px}
+.sector-pill{border:1px solid var(--border);padding:.9rem 2rem;font-size:.85rem;font-weight:300;color:var(--text-mid);cursor:default;transition:all .3s;position:relative;overflow:hidden}
+.sector-pill::before{content:'';position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:-1}
+.sector-pill:hover{color:var(--white);border-color:var(--navy)}
+.sector-pill:hover::before{transform:scaleX(1)}
+.sector-pill.featured{border-color:var(--gold);color:var(--gold-light)}
+
+/* ─── CHIFFRES ─── */
+#numbers{background:var(--navy);padding:6rem 5vw}
+.numbers-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(200,169,110,.15)}
+.number-item{background:var(--navy-mid);padding:3rem 2rem;text-align:center}
+.number-big{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--gold);line-height:1}
+.number-unit{font-size:1.4rem;color:rgba(200,169,110,.6)}
+.number-label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.8rem;line-height:1.4}
+
+/* ─── TESTIMONIAL ─── */
+#testimonial{background:var(--cream)}
+.testimonial-inner{max-width:800px;margin:0 auto;text-align:center}
+.quote-mark{font-family:'Cormorant Garamond',serif;font-size:6rem;color:var(--gold);opacity:.3;line-height:.5;display:block;margin-bottom:1rem}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:300;font-style:italic;color:var(--text-dark);line-height:1.55}
+.quote-author{margin-top:2rem;font-size:.82rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light)}
+.quote-author span{color:var(--gold)}
+
+/* ─── CTA FINAL ─── */
+#cta-final{background:var(--navy);position:relative;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,169,110,.12),transparent 60%)}
+.cta-inner{position:relative;max-width:700px;margin:0 auto}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:var(--white);line-height:1.15;margin-bottom:1.5rem}
+.cta-title em{font-style:italic;color:var(--gold)}
+.cta-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:3rem}
+.cta-form{display:flex;gap:0;max-width:480px;margin:0 auto}
+.cta-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(200,169,110,.3);border-right:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;padding:.9rem 1.4rem;outline:none;transition:border-color .2s}
+.cta-input::placeholder{color:rgba(255,255,255,.3)}
+.cta-input:focus{border-color:var(--gold)}
+.cta-submit{background:var(--gold);border:1px solid var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 1.8rem;cursor:pointer;transition:all .25s;white-space:nowrap}
+.cta-submit:hover{background:var(--gold-light)}
+.cta-reassure{font-size:.73rem;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-top:1.2rem;text-transform:uppercase}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy-mid);padding:3rem 5vw;border-top:1px solid rgba(200,169,110,.12)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--white);letter-spacing:.04em}
+.footer-logo span{color:var(--gold)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.2)}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── MOBILE ─── */
+@media(max-width:768px){
+  .problem-grid,.sov-inner{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .numbers-inner{grid-template-columns:repeat(2,1fr)}
+  .hero-metrics{position:static;padding:3rem 5vw 0;flex-wrap:wrap;gap:2rem}
+  .nav-links{display:none}
+  .cta-form{flex-direction:column}
+  .cta-input{border-right:1px solid rgba(200,169,110,.3)}
+  section{padding:5rem 5vw}
+}
+</style>
 </head>
-<body class="bg-dark text-gray-200 antialiased selection:bg-accent selection:text-white">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <a href="#" class="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
-                        <i class="ph-fill ph-hexagon text-accent"></i>
-                        Souveraine<span class="text-gray-500 font-normal">Data</span>
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center">
-                    <div class="ml-10 flex items-baseline space-x-8 mr-8">
-                        <a href="#securite" data-i18n="nav_approach" class="text-sm text-gray-400 hover:text-white transition-colors">Notre Approche</a>
-                        <a href="#solutions" data-i18n="nav_usecases" class="text-sm text-gray-400 hover:text-white transition-colors">Cas d'Usage</a>
-                        <a href="#poc" data-i18n="nav_poc" class="bg-white text-black px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-200 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                            Demander un POC
-                        </a>
-                    </div>
-                    <!-- Language Switcher -->
-                    <div class="relative flex items-center border-l border-white/10 pl-6">
-                        <i class="ph ph-globe text-gray-400 mr-2 text-lg"></i>
-                        <select id="lang-switch" class="bg-transparent text-sm text-gray-300 focus:outline-none focus:text-white cursor-pointer appearance-none pr-4">
-                            <option value="fr" class="bg-dark text-white">FR</option>
-                            <option value="en" class="bg-dark text-white">EN</option>
-                            <option value="es" class="bg-dark text-white">ES</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- NAV -->
+<nav id="navbar">
+  <a class="logo" href="#">Kairos<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sovereignty">Souveraineté</a></li>
+    <li><a href="#sectors">Secteurs</a></li>
+    <li><a href="#process">Méthode</a></li>
+  </ul>
+  <a href="#cta-final" class="nav-cta">Audit gratuit</a>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-grid">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 blur-[120px] rounded-full pointer-events-none"></div>
-
-        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-gray-300 mb-8 backdrop-blur-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span data-i18n="hero_badge">Traitement 100% Hors-Ligne & Sécurisé</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
-                <span data-i18n="hero_title_1">Vos données sont trop précieuses</span> <br class="hidden md:block">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 to-gray-600" data-i18n="hero_title_2">pour les confier au Cloud.</span>
-            </h1>
-            
-            <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed" data-i18n="hero_desc">
-                L'agence BPO spécialisée dans le traitement par Intelligence Artificielle pour les géants de l'Ingénierie, du BIM et de la Construction. <strong class="text-gray-200 font-medium">Vos secrets industriels restent sous scellé.</strong>
-            </p>
-            
-            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#poc" data-i18n="hero_btn_poc" class="px-8 py-4 bg-white text-black rounded-full font-medium hover:scale-105 transition-transform duration-300">
-                    Démarrer un Pilote (POC)
-                </a>
-                <a href="#solutions" class="px-8 py-4 glass-panel text-white rounded-full font-medium hover:bg-white/10 transition-colors duration-300 flex items-center justify-center gap-2">
-                    <span data-i18n="hero_btn_cases">Découvrir les cas d'usage</span> <i class="ph ph-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Norms Bar -->
-    <div class="border-y border-white/5 bg-darker/50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 py-8">
-            <p class="text-center text-xs font-medium text-gray-500 uppercase tracking-widest mb-6" data-i18n="norms_title">Nos processus répondent aux exigences les plus strictes</p>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-20 opacity-60 grayscale">
-                <div class="flex items-center gap-2"><i class="ph-fill ph-lock-key text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_1">RGPD STRICT</span></div>
-                <div class="flex items-center gap-2"><i class="ph-fill ph-gavel text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_2">SECRET PROFESSIONNEL</span></div>
-                <div class="flex items-center gap-2"><i class="ph-fill ph-shield-check text-2xl"></i> <span class="font-bold tracking-tight text-lg" data-i18n="norm_3">SECRET DES AFFAIRES</span></div>
-            </div>
-        </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-badge">IA locale · données souveraines</div>
+    <h1 class="hero-title">
+      Récupérez vos heures.<br>
+      <em>Gardez vos données.</em>
+    </h1>
+    <p class="hero-sub">
+      Nous automatisons les tâches répétitives de votre entreprise avec une <strong>IA qui tourne entièrement chez vous</strong> — sans cloud, sans abonnement tiers, sans transmission de données confidentielles.
+    </p>
+    <div class="hero-actions">
+      <a href="#cta-final" class="btn-primary">Demander un audit gratuit</a>
+      <a href="#services" class="btn-ghost">Voir nos services</a>
     </div>
+  </div>
+  <div class="hero-metrics">
+    <div class="metric">
+      <div class="metric-num">8h</div>
+      <div class="metric-label">gagnées / semaine<br>en moyenne</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">48h</div>
+      <div class="metric-label">pour voir<br>un premier résultat</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">0</div>
+      <div class="metric-label">donnée envoyée<br>à un cloud tiers</div>
+    </div>
+  </div>
+</section>
 
-    <!-- Le Problème / La Solution -->
-    <section id="securite" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6" data-i18n="dilemma_title">Le Dilemme de l'Ingénierie</h2>
-                    <p class="text-gray-400 text-lg mb-6 leading-relaxed" data-i18n="dilemma_p1">
-                        Les équipes de conception et d'exploitation perdent des milliers d'heures sur des tâches manuelles (extraction de plans, relecture de CCTP, traitement de baux). 
-                    </p>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed" data-i18n="dilemma_p2">
-                        Pourtant, le niveau de confidentialité de vos projets vous <strong class="text-white">interdit formellement</strong> d'utiliser des intelligences artificielles commerciales comme ChatGPT. Le risque d'espionnage industriel est trop grand.
-                    </p>
-                    <div class="glass-panel p-6 border-l-4 border-l-accent rounded-r-lg">
-                        <h4 class="text-white font-semibold flex items-center gap-2 mb-2">
-                            <i class="ph-fill ph-cpu text-accent text-xl"></i> <span data-i18n="dilemma_sol_title">La Solution "Air-Gapped"</span>
-                        </h4>
-                        <p class="text-sm text-gray-400" data-i18n="dilemma_sol_desc">
-                            Nous déployons des Modèles d'IA massifs sur nos propres "Forges" de calcul locales. La machine est physiquement déconnectée d'Internet. La fuite de données est mathématiquement impossible.
-                        </p>
-                    </div>
-                </div>
-                <div class="relative reveal delay-100">
-                    <div class="aspect-square md:aspect-video lg:aspect-square rounded-2xl glass-panel p-8 flex flex-col justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent"></div>
-                        <div class="space-y-6 relative z-10">
-                            <!-- Diagram Item -->
-                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
-                                <div class="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-500">
-                                    <i class="ph ph-cloud-slash text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-medium text-white" data-i18n="diag_1_title">Zéro Cloud</h5>
-                                    <p class="text-xs text-gray-400" data-i18n="diag_1_desc">Aucune API externe utilisée.</p>
-                                </div>
-                            </div>
-                            <!-- Diagram Item -->
-                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
-                                <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
-                                    <i class="ph ph-hard-drives text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-medium text-white" data-i18n="diag_2_title">Traitement sur Serveur Local</h5>
-                                    <p class="text-xs text-gray-400" data-i18n="diag_2_desc">Puces ultra-puissantes dédiées.</p>
-                                </div>
-                            </div>
-                            <!-- Diagram Item -->
-                            <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-white/5">
-                                <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500">
-                                    <i class="ph ph-file-lock text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-medium text-white" data-i18n="diag_3_title">Destruction Post-Livraison</h5>
-                                    <p class="text-xs text-gray-400" data-i18n="diag_3_desc">Purge militaire des données à 24h.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- PROBLÈME -->
+<section id="problem">
+  <div class="problem-grid">
+    <div class="problem-text reveal">
+      <p class="section-label">Le constat</p>
+      <h2 class="section-title">Vos équipes passent trop de temps sur des tâches qui <em>ne créent pas de valeur</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">
+        Saisie de factures, relances impayées, tri de documents, comptes-rendus, vérification de conformité… Ces tâches sont nécessaires, mais elles mobilisent des ressources précieuses que vous pourriez consacrer à votre cœur de métier.
+      </p>
+      <p class="section-sub" style="margin-top:1rem">
+        Et quand vous cherchez des solutions SaaS, vous vous heurtez à un autre problème : vos données confidentielles partent dans des serveurs que vous ne contrôlez pas.
+      </p>
+    </div>
+    <div class="problem-visual reveal" style="transition-delay:.2s">
+      <div class="prob-card">
+        <h3 class="prob-card-title">Ce que l'on entend le plus souvent</h3>
+        <div class="prob-item">
+          <div class="prob-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <p class="prob-text"><strong>« Je passe 4h par semaine à saisir des factures »</strong> — et encore plus à corriger les erreurs de saisie.</p>
         </div>
-    </section>
-
-    <!-- Cas d'usage -->
-    <section id="solutions" class="py-24 bg-darker">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4" data-i18n="cases_title">L'Intelligence Artificielle au service du BIM et du BTP</h2>
-                <p class="text-gray-400" data-i18n="cases_subtitle">Découvrez comment nous automatisons vos tâches les plus chronophages avec une précision chirurgicale.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <i class="ph-fill ph-file-pdf text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_1_title">Structuration de l'Historique</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_1_desc">Conversion de milliers de plans scannés et fiches techniques hétérogènes en bases de données structurées (COBie) prêtes pour l'injection BIM.</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_1_roi">ROI: 6 mois de saisie humaine réduits à 48h.</div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-100">
-                    <i class="ph-fill ph-magnifying-glass text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_2_title">Analyse Juridique & DCE</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_2_desc">Ingestion de cahiers des charges (CCTP) de 3000 pages. Identification des risques, clauses abusives et vérification de la conformité avec la maquette.</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_2_roi">0% d'oubli sur les normes d'incendie ou pénalités.</div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-200">
-                    <i class="ph-fill ph-buildings text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_3_title">Facility Management (GEM)</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_3_desc">Analyse des rapports d'intervention textes libres et des baux commerciaux pour alimenter instantanément votre logiciel de GMAO (Maximo, Archibus).</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_3_roi">Mise à jour patrimoniale automatisée.</div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal">
-                    <i class="ph-fill ph-detective text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_4_title">Anonymisation (Scrubbing)</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_4_desc">Nettoyage intelligent des plans et maquettes avant envoi aux sous-traitants. Remplacement des noms de projets confidentiels par des codes génériques.</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_4_roi">Protection totale du secret industriel.</div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-100">
-                    <i class="ph-fill ph-code text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_5_title">Routines & Plugins CAO/BIM</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_5_desc">Génération de code informatique sur-mesure (AutoLISP pour AutoCAD, C# pour API Revit) pour automatiser vos tâches de conception internes.</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_5_roi">Sans exposer votre code source à ChatGPT.</div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 reveal delay-200">
-                    <i class="ph-fill ph-leaf text-4xl text-gray-300 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="card_6_title">Bilan Carbone & ESG</h3>
-                    <p class="text-gray-400 text-sm mb-4" data-i18n="card_6_desc">Extraction massive des données environnementales (fiches FDES/EPD en PDF) et liaison automatique avec les nomenclatures de la maquette.</p>
-                    <div class="text-xs text-accent font-medium mt-auto pt-4 border-t border-white/5" data-i18n="card_6_roi">Calcul d'empreinte automatisé.</div>
-                </div>
-            </div>
+        <div class="prob-item">
+          <div class="prob-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <p class="prob-text"><strong>« On reçoit des centaines de documents par projet »</strong> — retrouver la bonne version prend une éternité.</p>
         </div>
-    </section>
-
-    <!-- POC CTA Section -->
-    <section id="poc" class="py-24 relative overflow-hidden">
-        <div class="absolute right-0 bottom-0 w-1/2 h-1/2 bg-accent/5 blur-[100px] rounded-full"></div>
-        
-        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10 reveal">
-            <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-i18n="poc_title">Ne nous croyez pas sur parole. <br>Testez-nous.</h2>
-            <p class="text-xl text-gray-400 mb-10 font-light" data-i18n="poc_desc">
-                Nous savons que la confiance se mérite. Demandez votre <strong class="text-white">Proof of Concept (POC)</strong> : confiez-nous un jeu de données réduit sous contrat NDA strict. Nous vous prouverons notre précision et notre sécurité avant tout déploiement.
-            </p>
-            
-            <div class="glass-panel p-8 rounded-2xl max-w-2xl mx-auto border-white/10">
-                <form class="space-y-4 text-left">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_name">Nom Complet</label>
-                            <input type="text" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="Jean Dupont">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_company">Entreprise</label>
-                            <input type="text" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="Disney, Vinci, etc.">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_email">Email Professionnel</label>
-                        <input type="email" class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors" placeholder="jean.dupont@entreprise.com">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="form_need">Quel est votre besoin principal ?</label>
-                        <select class="w-full bg-dark border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors appearance-none">
-                            <option data-i18n="form_opt_1">Structuration de données historiques (PDF/Plans)</option>
-                            <option data-i18n="form_opt_2">Analyse de DCE / CCTP</option>
-                            <option data-i18n="form_opt_3">Anonymisation de documents (Scrubbing)</option>
-                            <option data-i18n="form_opt_4">Développement d'outils (AutoLISP / Revit API)</option>
-                            <option data-i18n="form_opt_5">Autre...</option>
-                        </select>
-                    </div>
-                    <button type="button" class="w-full bg-white text-black font-bold py-4 rounded-lg mt-4 hover:bg-gray-200 transition-colors" data-i18n="form_submit">
-                        Demander un contact confidentiel
-                    </button>
-                    <p class="text-center text-xs text-gray-500 mt-4"><i class="ph-fill ph-lock-key"></i> <span data-i18n="form_secure">Vos données sont chiffrées de bout en bout.</span></p>
-                </form>
-            </div>
+        <div class="prob-item">
+          <div class="prob-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <p class="prob-text"><strong>« On ne peut pas utiliser ChatGPT »</strong> — nos données clients et contrats sont confidentiels.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-darker border-t border-white/5 py-12">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <i class="ph-fill ph-hexagon text-accent text-xl"></i>
-                <span class="text-lg font-bold tracking-tighter text-white">Souveraine<span class="text-gray-500 font-normal">Data</span></span>
-            </div>
-            <div class="text-sm text-gray-500">
-                &copy; 2026 SouveraineData. <span data-i18n="footer_rights">Tous droits réservés.</span>
-            </div>
-            <div class="flex gap-6 text-sm text-gray-500">
-                <a href="#" class="hover:text-white transition-colors" data-i18n="footer_legal">Mentions Légales</a>
-                <a href="#" class="hover:text-white transition-colors" data-i18n="footer_privacy">Politique de Confidentialité (RGPD)</a>
-            </div>
+        <div class="prob-item">
+          <div class="prob-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <p class="prob-text"><strong>« Les réunions de chantier prennent 2h à rédiger »</strong> — et souvent personne ne relit le CR.</p>
         </div>
-    </footer>
+        <div class="prob-float">
+          <div class="prob-float-num">43 Md€</div>
+          <div class="prob-float-text">perdus / an<br>en tâches admin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script>
-        // Animations and Navbar Scroll Effect
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+<!-- APPROCHE -->
+<section id="approach">
+  <div class="bg-pattern"></div>
+  <div class="approach-inner">
+    <div class="approach-header reveal">
+      <p class="section-label">Notre philosophie</p>
+      <h2 class="section-title" style="color:var(--white)">Une IA qui travaille <em>pour vous</em>,<br>pas contre votre confidentialité</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Trois principes fondateurs qui guident chacune de nos interventions.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-accent"></div>
+        <div class="pillar-num">01</div>
+        <h3 class="pillar-title">Souveraineté totale</h3>
+        <p class="pillar-text">Nos modèles d'IA s'exécutent exclusivement sur une infrastructure locale dédiée. Vos données — factures, contrats, maquettes, plans — ne quittent jamais votre environnement. Zéro transmission vers un cloud étranger.</p>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.15s">
+        <div class="pillar-accent"></div>
+        <div class="pillar-num">02</div>
+        <h3 class="pillar-title">Résultats en 48h</h3>
+        <p class="pillar-text">Nous ne faisons pas de grands projets de transformation sur 18 mois. Nous identifions la tâche qui vous coûte le plus de temps, et nous automatisons cette tâche précise en moins de 48 heures. Vous voyez le résultat immédiatement.</p>
+      </div>
+      <div class="pillar reveal" style="transition-delay:.3s">
+        <div class="pillar-accent"></div>
+        <div class="pillar-num">03</div>
+        <h3 class="pillar-title">Expertise métier</h3>
+        <p class="pillar-text">Nous maîtrisons à la fois l'intelligence artificielle et les métiers du BIM, de la construction et de la gestion d'entreprise. Nous parlons votre langage et comprenons vos contraintes réglementaires et documentaires.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-dark/80', 'backdrop-blur-lg');
-                navbar.classList.remove('border-transparent');
-            } else {
-                navbar.classList.remove('bg-dark/80', 'backdrop-blur-lg');
-                navbar.classList.add('border-transparent');
-            }
-        });
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <p class="section-label">Nos services</p>
+    <h2 class="section-title">Ce que nous automatisons <em>pour vous</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Chaque service est déployé et opérationnel en quelques jours, sur votre infrastructure ou la nôtre.</p>
+  </div>
+  <div class="services-grid reveal" style="transition-delay:.2s">
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3 class="svc-title">Comptabilité & Facturation</h3>
+      <p class="svc-text">Lecture automatique des factures fournisseurs, extraction des montants et TVA, pré-saisie dans votre logiciel. Relances impayées intelligentes, rapprochement bancaire mensuel, reporting financier automatisé.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">OCR intelligent</span>
+        <span class="svc-tag">Relances auto</span>
+        <span class="svc-tag">Reporting</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </div>
+      <h3 class="svc-title">Gestion documentaire BIM</h3>
+      <p class="svc-text">Classification et indexation automatique de vos fichiers IFC, plans PDF et correspondances projet. Recherche sémantique en langage naturel, détection de doublons et de versions obsolètes, suivi documentaire en temps réel.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">IFC / BIM</span>
+        <span class="svc-tag">Recherche sémantique</span>
+        <span class="svc-tag">RAG</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3 class="svc-title">Service client & Emails</h3>
+      <p class="svc-text">Assistant IA disponible 24h/24 pour répondre aux questions fréquentes, qualifier les demandes et prendre des rendez-vous. Tri et rédaction automatique des emails entrants. Réduction de 40 à 60 % du volume traité manuellement.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Chatbot</span>
+        <span class="svc-tag">Email auto</span>
+        <span class="svc-tag">24/7</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3 class="svc-title">Ressources Humaines</h3>
+      <p class="svc-text">Scoring automatique des candidatures selon votre fiche de poste, résumé des 10 meilleurs profils avec justification. Assistant RH interne pour les questions courantes (congés, paie, RTT). Rédaction d'offres d'emploi optimisées.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Tri CV</span>
+        <span class="svc-tag">Assistant RH</span>
+        <span class="svc-tag">Rédaction</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h3 class="svc-title">Analyse de documents techniques</h3>
+      <p class="svc-text">Extraction structurée depuis des cahiers des charges volumineux (CCTP, CCAP), rapports techniques, contrats. Identification des exigences clés, tableau des risques, vérification de complétude. Un dossier de 200 pages analysé en 15 minutes.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">CCTP / CCAP</span>
+        <span class="svc-tag">Extraction JSON</span>
+        <span class="svc-tag">Risques</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3 class="svc-title">Comptes-rendus & Réunions</h3>
+      <p class="svc-text">Transcription automatique de vos réunions audio ou visio. Génération d'un compte-rendu structuré avec décisions, actions et responsables. Envoi automatique aux participants dans les 5 minutes suivant la fin de la réunion.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Transcription</span>
+        <span class="svc-tag">Résumé IA</span>
+        <span class="svc-tag">Actions</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    const headerOffset = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                }
-            });
-        });
+<!-- SOUVERAINETÉ -->
+<section id="sovereignty">
+  <div class="sov-accent-line"></div>
+  <div class="sov-inner">
+    <div class="sov-content reveal">
+      <p class="section-label">Confidentialité absolue</p>
+      <h2 class="section-title">Vos données ne quittent <em>jamais</em> votre contrôle</h2>
+      <div class="divider"></div>
+      <p class="section-sub">C'est notre engagement le plus important. Dans un monde où chaque requête ChatGPT alimente les serveurs d'OpenAI aux États-Unis, nous avons fait un choix radical.</p>
+      <div class="sov-points">
+        <div class="sov-point">
+          <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="sov-point-text"><strong>Infrastructure 100 % locale.</strong> Nos modèles d'IA s'exécutent sur une machine dédiée, sur site ou en datacenter français. Aucune dépendance cloud.</p>
+        </div>
+        <div class="sov-point">
+          <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="sov-point-text"><strong>RGPD par conception.</strong> Vos factures, contrats, maquettes et données RH restent dans votre périmètre juridique. Conformité RGPD native, sans effort supplémentaire.</p>
+        </div>
+        <div class="sov-point">
+          <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="sov-point-text"><strong>Pas de dépendance à un éditeur.</strong> Nous utilisons des modèles open-source. Vous n'êtes pas tributaire d'un abonnement ou d'une décision d'un acteur américain.</p>
+        </div>
+        <div class="sov-point">
+          <div class="sov-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="sov-point-text"><strong>Disponible hors connexion.</strong> Votre IA fonctionne même sans internet. Idéal pour les chantiers, les zones blanches, les environnements sécurisés.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sov-diagram reveal" style="transition-delay:.25s">
+      <div class="sov-box">
+        <div class="sov-server">
+          <div class="sov-server-item">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            <div class="sov-server-label"><strong>Serveur IA dédié</strong>Modèles Mistral / Llama — on-premise</div>
+          </div>
+          <div class="sov-server-item">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <div class="sov-server-label"><strong>Vos documents & données</strong>Factures, contrats, IFC, emails</div>
+          </div>
+          <div class="sov-server-item">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <div class="sov-server-label"><strong>Résultats structurés</strong>Excel, PDF, JSON, Word — livrés à vos équipes</div>
+          </div>
+        </div>
+        <div class="sov-lock">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <div class="sov-lock-text">Données jamais transmises à l'extérieur</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // --- MULTILINGUAL SYSTEM (i18n) ---
-        const translations = {
-            fr: {
-                nav_approach: "Notre Approche",
-                nav_usecases: "Cas d'Usage",
-                nav_poc: "Demander un POC",
-                hero_badge: "Traitement 100% Hors-Ligne & Sécurisé",
-                hero_title_1: "Vos données sont trop précieuses",
-                hero_title_2: "pour les confier au Cloud.",
-                hero_desc: "L'agence BPO spécialisée dans le traitement par Intelligence Artificielle pour les géants de l'Ingénierie, du BIM et de la Construction. <strong class='text-gray-200 font-medium'>Vos secrets industriels restent sous scellé.</strong>",
-                hero_btn_poc: "Démarrer un Pilote (POC)",
-                hero_btn_cases: "Découvrir les cas d'usage",
-                norms_title: "Nos processus répondent aux exigences les plus strictes",
-                norm_1: "RGPD STRICT",
-                norm_2: "SECRET PROFESSIONNEL",
-                norm_3: "SECRET DES AFFAIRES",
-                dilemma_title: "Le Dilemme de l'Ingénierie",
-                dilemma_p1: "Les équipes de conception et d'exploitation perdent des milliers d'heures sur des tâches manuelles (extraction de plans, relecture de CCTP, traitement de baux).",
-                dilemma_p2: "Pourtant, le niveau de confidentialité de vos projets vous <strong class='text-white'>interdit formellement</strong> d'utiliser des intelligences artificielles commerciales comme ChatGPT. Le risque d'espionnage industriel est trop grand.",
-                dilemma_sol_title: "La Solution \"Air-Gapped\"",
-                dilemma_sol_desc: "Nous déployons des Modèles d'IA massifs sur nos propres \"Forges\" de calcul locales. La machine est physiquement déconnectée d'Internet. La fuite de données est mathématiquement impossible.",
-                diag_1_title: "Zéro Cloud",
-                diag_1_desc: "Aucune API externe utilisée.",
-                diag_2_title: "Traitement sur Serveur Local",
-                diag_2_desc: "Puces ultra-puissantes dédiées.",
-                diag_3_title: "Destruction Post-Livraison",
-                diag_3_desc: "Purge militaire des données à 24h.",
-                cases_title: "L'Intelligence Artificielle au service du BIM et du BTP",
-                cases_subtitle: "Découvrez comment nous automatisons vos tâches les plus chronophages avec une précision chirurgicale.",
-                card_1_title: "Structuration de l'Historique",
-                card_1_desc: "Conversion de milliers de plans scannés et fiches techniques hétérogènes en bases de données structurées (COBie) prêtes pour l'injection BIM.",
-                card_1_roi: "ROI: 6 mois de saisie humaine réduits à 48h.",
-                card_2_title: "Analyse Juridique & DCE",
-                card_2_desc: "Ingestion de cahiers des charges (CCTP) de 3000 pages. Identification des risques, clauses abusives et vérification de la conformité avec la maquette.",
-                card_2_roi: "0% d'oubli sur les normes d'incendie ou pénalités.",
-                card_3_title: "Facility Management (GEM)",
-                card_3_desc: "Analyse des rapports d'intervention textes libres et des baux commerciaux pour alimenter instantanément votre logiciel de GMAO (Maximo, Archibus).",
-                card_3_roi: "Mise à jour patrimoniale automatisée.",
-                card_4_title: "Anonymisation (Scrubbing)",
-                card_4_desc: "Nettoyage intelligent des plans et maquettes avant envoi aux sous-traitants. Remplacement des noms de projets confidentiels par des codes génériques.",
-                card_4_roi: "Protection totale du secret industriel.",
-                card_5_title: "Routines & Plugins CAO/BIM",
-                card_5_desc: "Génération de code informatique sur-mesure (AutoLISP pour AutoCAD, C# pour API Revit) pour automatiser vos tâches de conception internes.",
-                card_5_roi: "Sans exposer votre code source à ChatGPT.",
-                card_6_title: "Bilan Carbone & ESG",
-                card_6_desc: "Extraction massive des données environnementales (fiches FDES/EPD en PDF) et liaison automatique avec les nomenclatures de la maquette.",
-                card_6_roi: "Calcul d'empreinte automatisé.",
-                poc_title: "Ne nous croyez pas sur parole. <br>Testez-nous.",
-                poc_desc: "Nous savons que la confiance se mérite. Demandez votre <strong class='text-white'>Proof of Concept (POC)</strong> : confiez-nous un jeu de données réduit sous contrat NDA strict. Nous vous prouverons notre précision et notre sécurité avant tout déploiement.",
-                form_name: "Nom Complet",
-                form_company: "Entreprise",
-                form_email: "Email Professionnel",
-                form_need: "Quel est votre besoin principal ?",
-                form_opt_1: "Structuration de données historiques (PDF/Plans)",
-                form_opt_2: "Analyse de DCE / CCTP",
-                form_opt_3: "Anonymisation de documents (Scrubbing)",
-                form_opt_4: "Développement d'outils (AutoLISP / Revit API)",
-                form_opt_5: "Autre...",
-                form_submit: "Demander un contact confidentiel",
-                form_secure: "Vos données sont chiffrées de bout en bout.",
-                footer_rights: "Tous droits réservés.",
-                footer_legal: "Mentions Légales",
-                footer_privacy: "Politique de Confidentialité (RGPD)"
-            },
-            en: {
-                nav_approach: "Our Approach",
-                nav_usecases: "Use Cases",
-                nav_poc: "Request a POC",
-                hero_badge: "100% Offline & Secure Processing",
-                hero_title_1: "Your data is too precious",
-                hero_title_2: "to be trusted to the Cloud.",
-                hero_desc: "The specialized BPO agency for Artificial Intelligence processing tailored for Engineering, BIM, and Construction giants. <strong class='text-gray-200 font-medium'>Your trade secrets remain strictly sealed.</strong>",
-                hero_btn_poc: "Start a Pilot (POC)",
-                hero_btn_cases: "Explore use cases",
-                norms_title: "Our processes meet the strictest requirements",
-                norm_1: "STRICT GDPR",
-                norm_2: "PROFESSIONAL SECRECY",
-                norm_3: "TRADE SECRETS",
-                dilemma_title: "The Engineering Dilemma",
-                dilemma_p1: "Design and operations teams lose thousands of hours on manual tasks (blueprint extraction, specifications review, lease processing).",
-                dilemma_p2: "However, the confidentiality level of your projects <strong class='text-white'>strictly prohibits</strong> the use of commercial AIs like ChatGPT. The risk of industrial espionage is simply too high.",
-                dilemma_sol_title: "The \"Air-Gapped\" Solution",
-                dilemma_sol_desc: "We deploy massive AI models on our own local computing \"Forges\". The machine is physically disconnected from the internet. Data leakage is mathematically impossible.",
-                diag_1_title: "Zero Cloud",
-                diag_1_desc: "No external APIs used.",
-                diag_2_title: "Local Server Processing",
-                diag_2_desc: "Dedicated ultra-powerful chips.",
-                diag_3_title: "Post-Delivery Destruction",
-                diag_3_desc: "Military-grade data purge within 24h.",
-                cases_title: "Artificial Intelligence for BIM and Construction",
-                cases_subtitle: "Discover how we automate your most time-consuming tasks with surgical precision.",
-                card_1_title: "Historical Data Structuring",
-                card_1_desc: "Conversion of thousands of scanned blueprints and heterogeneous technical sheets into structured databases (COBie) ready for BIM injection.",
-                card_1_roi: "ROI: 6 months of human entry reduced to 48h.",
-                card_2_title: "Legal & Tender Analysis",
-                card_2_desc: "Ingestion of 3,000-page technical specifications. Identification of risks, unfair clauses, and compliance verification with the digital twin.",
-                card_2_roi: "0% oversight on fire standards or penalties.",
-                card_3_title: "Facility Management (GEM)",
-                card_3_desc: "Analysis of free-text intervention reports and commercial leases to instantly feed your CMMS software (Maximo, Archibus).",
-                card_3_roi: "Automated asset updates.",
-                card_4_title: "Data Scrubbing & Anonymization",
-                card_4_desc: "Intelligent cleaning of blueprints and models before sending to subcontractors. Replacing confidential project names with generic codes.",
-                card_4_roi: "Total protection of industrial secrets.",
-                card_5_title: "Custom CAD/BIM Plugins",
-                card_5_desc: "Generation of tailored code (AutoLISP for AutoCAD, C# for Revit API) to automate your internal design workflows.",
-                card_5_roi: "Without exposing your source code to ChatGPT.",
-                card_6_title: "Carbon Footprint & ESG",
-                card_6_desc: "Mass extraction of environmental data (EPD/FDES sheets in PDF) and automatic linking with the 3D model's material schedules.",
-                card_6_roi: "Automated footprint calculation.",
-                poc_title: "Don't just take our word for it. <br>Test us.",
-                poc_desc: "We know trust must be earned. Request your <strong class='text-white'>Proof of Concept (POC)</strong>: entrust us with a reduced dataset under a strict NDA. We will prove our precision and security before any full deployment.",
-                form_name: "Full Name",
-                form_company: "Company",
-                form_email: "Professional Email",
-                form_need: "What is your main need?",
-                form_opt_1: "Historical data structuring (PDF/Blueprints)",
-                form_opt_2: "Specifications / Tender Analysis",
-                form_opt_3: "Document Anonymization (Scrubbing)",
-                form_opt_4: "Tool Development (AutoLISP / Revit API)",
-                form_opt_5: "Other...",
-                form_submit: "Request a confidential contact",
-                form_secure: "Your data is encrypted end-to-end.",
-                footer_rights: "All rights reserved.",
-                footer_legal: "Legal Notice",
-                footer_privacy: "Privacy Policy (GDPR)"
-            },
-            es: {
-                nav_approach: "Nuestro Enfoque",
-                nav_usecases: "Casos de Uso",
-                nav_poc: "Solicitar un POC",
-                hero_badge: "Procesamiento 100% Fuera de Línea y Seguro",
-                hero_title_1: "Sus datos son demasiado valiosos",
-                hero_title_2: "para confiarlos a la Nube.",
-                hero_desc: "La agencia BPO especializada en procesamiento por Inteligencia Artificial para los gigantes de la Ingeniería, BIM y Construcción. <strong class='text-gray-200 font-medium'>Sus secretos industriales permanecen bajo sello.</strong>",
-                hero_btn_poc: "Iniciar un Piloto (POC)",
-                hero_btn_cases: "Descubrir casos de uso",
-                norms_title: "Nuestros procesos cumplen con los requisitos más estrictos",
-                norm_1: "RGPD ESTRICTO",
-                norm_2: "SECRETO PROFESIONAL",
-                norm_3: "SECRETOS COMERCIALES",
-                dilemma_title: "El Dilema de la Ingeniería",
-                dilemma_p1: "Los equipos de diseño y operaciones pierden miles de horas en tareas manuales (extracción de planos, revisión de especificaciones, procesamiento de contratos).",
-                dilemma_p2: "Sin embargo, el nivel de confidencialidad de sus proyectos le <strong class='text-white'>prohíbe estrictamente</strong> utilizar IA comerciales como ChatGPT. El riesgo de espionaje industrial es demasiado alto.",
-                dilemma_sol_title: "La Solución \"Air-Gapped\"",
-                dilemma_sol_desc: "Desplegamos modelos masivos de IA en nuestras propias \"Forjas\" de cálculo locales. La máquina está físicamente desconectada de Internet. La fuga de datos es matemáticamente imposible.",
-                diag_1_title: "Cero Nube",
-                diag_1_desc: "Sin uso de APIs externas.",
-                diag_2_title: "Procesamiento en Servidor Local",
-                diag_2_desc: "Chips dedicados ultrapotentes.",
-                diag_3_title: "Destrucción Post-Entrega",
-                diag_3_desc: "Purga militar de datos en 24h.",
-                cases_title: "Inteligencia Artificial para BIM y Construcción",
-                cases_subtitle: "Descubra cómo automatizamos sus tareas más lentas con precisión quirúrgica.",
-                card_1_title: "Estructuración de Históricos",
-                card_1_desc: "Conversión de miles de planos escaneados y fichas técnicas heterogéneas en bases de datos estructuradas (COBie) listas para la inyección BIM.",
-                card_1_roi: "ROI: 6 meses de entrada humana reducidos a 48h.",
-                card_2_title: "Análisis Legal y Licitaciones",
-                card_2_desc: "Ingestión de especificaciones técnicas de 3000 páginas. Identificación de riesgos, cláusulas abusivas y verificación de cumplimiento con el modelo 3D.",
-                card_2_roi: "0% de omisión en normas de incendio o sanciones.",
-                card_3_title: "Gestión de Instalaciones (GEM)",
-                card_3_desc: "Análisis de informes de intervención de texto libre y contratos comerciales para alimentar instantáneamente su software GMAO (Maximo, Archibus).",
-                card_3_roi: "Actualización patrimonial automatizada.",
-                card_4_title: "Anonimización (Scrubbing)",
-                card_4_desc: "Limpieza inteligente de planos y modelos antes de enviarlos a subcontratistas. Reemplazo de nombres de proyectos confidenciales por códigos genéricos.",
-                card_4_roi: "Protección total del secreto industrial.",
-                card_5_title: "Plugins Personalizados CAD/BIM",
-                card_5_desc: "Generación de código a medida (AutoLISP para AutoCAD, C# para API Revit) para automatizar sus flujos de trabajo de diseño internos.",
-                card_5_roi: "Sin exponer su código fuente a ChatGPT.",
-                card_6_title: "Huella de Carbono y ESG",
-                card_6_desc: "Extracción masiva de datos ambientales (fichas EPD/FDES en PDF) y vinculación automática con los inventarios de materiales del modelo.",
-                card_6_roi: "Cálculo de huella automatizado.",
-                poc_title: "No confíe solo en nuestra palabra. <br>Pónganos a prueba.",
-                poc_desc: "Sabemos que la confianza hay que ganársela. Solicite su <strong class='text-white'>Prueba de Concepto (POC)</strong>: confíenos un conjunto de datos reducido bajo un estricto acuerdo de confidencialidad. Demostraremos nuestra precisión y seguridad antes de cualquier despliegue.",
-                form_name: "Nombre Completo",
-                form_company: "Empresa",
-                form_email: "Correo Profesional",
-                form_need: "¿Cuál es su necesidad principal?",
-                form_opt_1: "Estructuración de datos históricos (PDF/Planos)",
-                form_opt_2: "Análisis de Especificaciones / Licitaciones",
-                form_opt_3: "Anonimización de documentos (Scrubbing)",
-                form_opt_4: "Desarrollo de Herramientas (AutoLISP / Revit API)",
-                form_opt_5: "Otro...",
-                form_submit: "Solicitar contacto confidencial",
-                form_secure: "Sus datos están cifrados de extremo a extremo.",
-                footer_rights: "Todos los derechos reservados.",
-                footer_legal: "Aviso Legal",
-                footer_privacy: "Política de Privacidad (RGPD)"
-            }
-        };
+<!-- SECTEURS -->
+<section id="sectors">
+  <div class="sectors-header reveal">
+    <p class="section-label">Secteurs d'intervention</p>
+    <h2 class="section-title">Nous intervenons dans <em>votre secteur</em></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Une expertise particulière dans le BIM et la construction, combinée à une offre transversale pour toutes les PME.</p>
+  </div>
+  <div class="sectors-flex reveal" style="transition-delay:.2s">
+    <div class="sector-pill featured">BIM & Coordination de projet</div>
+    <div class="sector-pill featured">Bureaux d'études & Ingénierie</div>
+    <div class="sector-pill featured">Promotion immobilière</div>
+    <div class="sector-pill featured">Entreprises générales BTP</div>
+    <div class="sector-pill">Cabinets d'architecture</div>
+    <div class="sector-pill">PME de services</div>
+    <div class="sector-pill">Cabinets comptables</div>
+    <div class="sector-pill">Cabinets juridiques</div>
+    <div class="sector-pill">Sociétés de négoce</div>
+    <div class="sector-pill">Commerce & Distribution</div>
+    <div class="sector-pill">Industries & Fabrication</div>
+    <div class="sector-pill">Ressources humaines</div>
+  </div>
+</section>
 
-        // Handle Language Change
-        const langSwitch = document.getElementById('lang-switch');
-        
-        langSwitch.addEventListener('change', (e) => {
-            const lang = e.target.value;
-            document.documentElement.lang = lang; // Update HTML lang attribute
-            
-            // Find all elements with data-i18n attribute
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    // Use innerHTML because some translations contain HTML tags like <strong> or <br>
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-        });
-    </script>
+<!-- PROCESSUS -->
+<section id="process" style="background:var(--white)">
+  <div class="process-inner">
+    <div class="process-header reveal">
+      <p class="section-label">Notre méthode</p>
+      <h2 class="section-title">Un résultat concret en <em>moins d'une semaine</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Pas de grand projet. Pas de consultant qui repart avec un rapport. Nous livrons une automatisation opérationnelle, rapidement.</p>
+    </div>
+    <div class="steps">
+      <div class="step" id="s1">
+        <div class="step-num"><span class="step-num-text">01</span></div>
+        <div class="step-body">
+          <h3 class="step-title">Audit découverte — 30 minutes</h3>
+          <p class="step-text">Un appel pour identifier la tâche qui vous coûte le plus de temps. Nous calculons ensemble le gain potentiel en heures et en euros. Gratuit, sans engagement, avec une démonstration live sur l'un de vos documents.</p>
+          <span class="step-time">Gratuit · 30 min</span>
+        </div>
+      </div>
+      <div class="step" id="s2">
+        <div class="step-num"><span class="step-num-text">02</span></div>
+        <div class="step-body">
+          <h3 class="step-title">Démonstration sur vos données réelles</h3>
+          <p class="step-text">Vous nous transmettez un document réel (facture, CCTP, CV, audio de réunion). Nous vous livrons un résultat traité par notre IA dans les 48 heures. Vous voyez exactement ce que vous allez obtenir, avant de vous engager.</p>
+          <span class="step-time">Sous 48h</span>
+        </div>
+      </div>
+      <div class="step" id="s3">
+        <div class="step-num"><span class="step-num-text">03</span></div>
+        <div class="step-body">
+          <h3 class="step-title">Déploiement & intégration</h3>
+          <p class="step-text">Nous configurons et déployons l'automatisation dans votre environnement de travail (SharePoint, email, ERP, Excel…). Formation de vos équipes incluse. Première version opérationnelle sous 5 jours ouvrés.</p>
+          <span class="step-time">5 jours ouvrés</span>
+        </div>
+      </div>
+      <div class="step" id="s4">
+        <div class="step-num"><span class="step-num-text">04</span></div>
+        <div class="step-body">
+          <h3 class="step-title">Suivi & optimisation continue</h3>
+          <p class="step-text">Nous assurons la maintenance, les mises à jour de modèles et l'optimisation. Vous nous signalez ce qui ne correspond pas à vos attentes, nous affinons. Votre IA s'améliore en continu sur vos propres données.</p>
+          <span class="step-time">Mensuel · sans engagement long terme</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<section id="numbers">
+  <div class="numbers-inner">
+    <div class="number-item reveal">
+      <div class="number-big">8<span class="number-unit">h</span></div>
+      <div class="number-label">gagnées par semaine<br>en moyenne client</div>
+    </div>
+    <div class="number-item reveal" style="transition-delay:.1s">
+      <div class="number-big">0<span class="number-unit">€</span></div>
+      <div class="number-label">de données vendues<br>ou partagées</div>
+    </div>
+    <div class="number-item reveal" style="transition-delay:.2s">
+      <div class="number-big">48<span class="number-unit">h</span></div>
+      <div class="number-label">pour livrer<br>un premier résultat</div>
+    </div>
+    <div class="number-item reveal" style="transition-delay:.3s">
+      <div class="number-big">-40<span class="number-unit">%</span></div>
+      <div class="number-label">de tickets traités<br>manuellement</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="testimonial-inner reveal">
+    <span class="quote-mark">&ldquo;</span>
+    <p class="quote-text">En tant que bureau d'études, nos maquettes et nos cahiers des charges sont des documents hautement confidentiels. Le fait de pouvoir utiliser une IA performante sans que nos données ne quittent notre réseau interne, c'est un argument qui a emporté la décision immédiatement.</p>
+    <p class="quote-author">Directeur technique, <span>bureau d'études structure</span></p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-bg"></div>
+  <div class="cta-inner reveal">
+    <p class="section-label" style="color:var(--gold)">Première étape</p>
+    <h2 class="cta-title">Voyez le résultat<br>sur <em>vos propres documents</em></h2>
+    <p class="cta-sub">Transmettez-nous votre email. Nous vous rappelons sous 24h pour un audit gratuit de 30 minutes — avec une démonstration live sur un document de votre choix.</p>
+    <form class="cta-form" onsubmit="handleSubmit(event)">
+      <input type="email" class="cta-input" placeholder="votre@email.fr" id="emailInput" required>
+      <button type="submit" class="cta-submit">Demander l'audit</button>
+    </form>
+    <p class="cta-reassure">Aucun engagement · Réponse sous 24h · 100 % confidentiel</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Kairos<span>.</span></div>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#sovereignty">Souveraineté</a></li>
+      <li><a href="#sectors">Secteurs</a></li>
+      <li><a href="#cta-final">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Kairos Intelligence — IA locale souveraine</p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal, .step').forEach(el => observer.observe(el));
+
+// CTA form
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const input = document.getElementById('emailInput');
+  btn.textContent = 'Envoyé ✓';
+  btn.style.background = '#4caf83';
+  btn.style.borderColor = '#4caf83';
+  input.value = '';
+  setTimeout(() => {
+    btn.textContent = 'Demander l\'audit';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+  }, 3000);
+}
+
+// Smooth step reveal with stagger
+const steps = document.querySelectorAll('.step');
+const stepObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      const idx = Array.from(steps).indexOf(e.target);
+      setTimeout(() => e.target.classList.add('visible'), idx * 140);
+    }
+  });
+}, { threshold: 0.1 });
+steps.forEach(s => stepObs.observe(s));
+</script>
 </body>
 </html>
